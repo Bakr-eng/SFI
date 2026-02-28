@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SFI.View.TeacherPage"
+             Title="TeacherPage"
+             xmlns:components="clr-namespace:SFI.View.Components">
+
+    <VerticalStackLayout>
+        <Label 
+            x:Name="welcomeLabel"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" 
+        />
+
+
+
+        <Grid ColumnDefinitions="*, Auto">
+            <components:LogoutButton Grid.Column="1"/>
+            <components:GoBackButton  Grid.Column="0"/>
+        </Grid>
+
+
+        <Button
+                Text="Hantera elever"
+                WidthRequest="500"
+                HeightRequest="40"
+                BackgroundColor="DarkGray"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                Margin="0,20,0,0"
+                TextColor="Black"
+                Clicked="OnManageStudentsClicked" />
+
+
+
+    </VerticalStackLayout>
+</ContentPage>

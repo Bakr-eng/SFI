@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SFI.View.AddNewStudentsPage"
+             Title="AddNewStudentsPage"
+             xmlns:components="clr-namespace:SFI.View.Components">
+
+    <VerticalStackLayout>
+
+
+        <Grid ColumnDefinitions="*, Auto">
+            <components:LogoutButton Grid.Column="1"/>
+            <components:GoBackButton  Grid.Column="0"/>
+        </Grid>
+
+
+        <Entry
+            x:Name="StudentName"
+            Placeholder="namn"
+            BackgroundColor="BlanchedAlmond"
+            TextColor="Black"
+            Margin="0,5"/>
+
+        <Entry
+            x:Name="StudentEmail"
+            Placeholder="Email"
+            BackgroundColor="BlanchedAlmond"
+            TextColor="Black"
+            Margin="0,5" />
+
+        <Entry
+            x:Name="Password"
+            Placeholder="lösenord"
+            BackgroundColor="BlanchedAlmond"
+            TextColor="Black"
+            Margin="0,5" 
+            />
+
+        <Button
+            Text="Spara"
+            Margin="70,0,70,0"
+            Clicked="OnSaveClicked"
+            />
+
+
+        
+        
+
+
+
+
+    </VerticalStackLayout>
+</ContentPage>
