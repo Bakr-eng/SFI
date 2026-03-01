@@ -44,10 +44,10 @@ public partial class ManageStudentsPage : ContentPage
         {
             await Navigation.PushAsync(new StudentInfoPage(elev));
         }
-        else if(e.CurrentSelection.FirstOrDefault() is null)
-        {
-            await DisplayAlert("Fel", "Ingen elev vald", "OK");
-        }
+        //else if(e.CurrentSelection.FirstOrDefault() is null)
+        //{
+        //    await DisplayAlert("Fel", "Ingen elev vald", "OK");
+        //}
 
     }
 }
