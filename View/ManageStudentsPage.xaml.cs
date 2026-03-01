@@ -9,7 +9,7 @@ public partial class ManageStudentsPage : ContentPage
 {
     protected override async void OnAppearing() // Laddar eleverna varje gång sidan visas
     {
-        base.OnAppearing();
+        base.OnAppearing(); 
         await LoadStudents();
     }
 

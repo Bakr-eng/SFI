@@ -12,8 +12,24 @@
             HorizontalOptions="Center" 
         />
 
-        <components:GoBackButton
-            Margin="0,0,0,20"/>
+        <Grid ColumnDefinitions="*, Auto">
+            <components:GoBackButton  
+                Grid.Column="0"
+                Margin="0,0,0,20"
+                />
+
+            <Button Text="Ta bort eleven"
+                WidthRequest="120"
+                HeightRequest="40"
+                BackgroundColor="DarkRed"
+                HorizontalOptions="End"
+                VerticalOptions="Start"
+                Margin="0,20,10,0"
+                TextColor="White"
+                Clicked="OnDeleteClicked"
+ />
+
+        </Grid>
 
         <Label 
             x:Name="NamnLabel"
@@ -41,16 +57,7 @@
 
 
 
-        <Button Text="Ta bort eleven"
-             WidthRequest="90"
-             HeightRequest="40"
-             BackgroundColor="DarkRed"
-             HorizontalOptions="Start"
-             VerticalOptions="Start"
-             Margin="0,20,10,0"
-             TextColor="White"
-             Clicked="OnDeleteClicked"
-        />
+       
 
 
     </VerticalStackLayout>
