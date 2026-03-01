@@ -12,14 +12,16 @@
         </Grid>
 
 
-       
+
 
         <Button
             Text="Lägg till elev"
             Clicked="OnAddStudentClicked"
-            Margin="0,10" 
-        />
-        
+            Margin="0,10" />
+
+
+
+
         <Button
             Text="Visa elevere"
             Clicked="OnShowStudentClicked"    

@@ -43,4 +43,14 @@ public partial class StudentInfoPage : ContentPage
         }
     }
 
+    private async void OnDeleteClicked(object sender, EventArgs e)
+    {
+        if(await DisplayAlert("Radera", "Är du säker på att du vill radera denna elev?", "Ja", "Nej"))
+        {
+            var db = new Data.MongoDb();
+            await db.Personer.DeleteOneAsync(p => p.Id == _elev.Id);
+            await DisplayAlert("Klart", "Eleven har raderats!", "OK");
+            await Navigation.PopAsync();
+        }
+    }
 }
