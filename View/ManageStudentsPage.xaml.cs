@@ -45,14 +45,7 @@ public partial class ManageStudentsPage : ContentPage
 		await Navigation.PushAsync(new AddNewStudentsPage(_Larare)); // Skickar läraren objektet för att spara klassId
     }
 
-
-
-
-    private async void OnShowStudentClicked(object sender, EventArgs e)
-    {
-       await LoadStudents();
-
-    }
+   
 
     private async void OnStudentSelected(object sender, SelectionChangedEventArgs e)
     {

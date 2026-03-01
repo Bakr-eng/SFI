@@ -17,8 +17,9 @@ public partial class StudentInfoPage : ContentPage
     }
     private async void LoadStudentInfo()
     {
-        NameLabel.Text = $"Namn: {_elev.Name}";
+        NamnLabel.Text = $"Namn: {_elev.Name}";
         EmailLabel.Text = $"E-post: {_elev.Email}";
+        LösenordLabel.Text = $"Lösenord: {_elev.Lösenord}";
 
         if (_elev.KlassId.HasValue)
         {
@@ -41,6 +42,7 @@ public partial class StudentInfoPage : ContentPage
         {
             KlassIdLabel.Text = "Klass: Ingen klass tilldelad";
         }
+
     }
 
     private async void OnDeleteClicked(object sender, EventArgs e)

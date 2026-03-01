@@ -22,11 +22,6 @@
 
 
 
-        <Button
-            Text="Visa elevere"
-            Clicked="OnShowStudentClicked"    
-            Margin="0,10" 
-        />
 
         <CollectionView x:Name="StudentsList"
                 SelectionMode="Single"
