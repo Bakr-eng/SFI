@@ -27,10 +27,23 @@ namespace SFI
                 await DisplayAlert("Fel", "Felaktigt användarnamn eller lösenord", "OK");
                 return;
             }
+            else if (person.Roll == "Elev")
+            {
+                await Navigation.PushAsync(new StudentPage(person));
+                Name.Text = string.Empty;
+                Password.Text = string.Empty;
+            }
+            //else if (person.Roll == "Lärare")
+            //{
 
-            await Navigation.PushAsync(new TeacherPage(person));
-            Name.Text = string.Empty;
-            Password.Text = string.Empty;
+            //    await Navigation.PushAsync(new TeacherPage(person));
+            //    Name.Text = string.Empty;
+            //    Password.Text = string.Empty;
+            //}
+            else
+            {
+                await DisplayAlert("Fel", "Okänd roll", "OK");
+            }
 
 
 
