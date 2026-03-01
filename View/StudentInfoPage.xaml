@@ -2,14 +2,18 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SFI.View.StudentInfoPage"
-             Title="StudentInfoPage">
+             Title="StudentInfoPage"
+             xmlns:components="clr-namespace:SFI.View.Components">
     <VerticalStackLayout>
 
         <Label
-            Text="elevInfo"
+            Text="eleven Info"
             FontSize="30"
             HorizontalOptions="Center" 
         />
+
+        <components:GoBackButton
+            Margin="0,0,0,20"/>
 
         <Label Text="Namn:" FontAttributes="Bold"/>
         <Label x:Name="NameLabel"/>

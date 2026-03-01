@@ -36,7 +36,6 @@ public partial class ManageStudentsPage : ContentPage
 
         StudentsList.ItemsSource = students;
 
-        // await Navigation.PushAsync(new ShowStudentsPage(_Larare));
     }
 
     private async void OnStudentSelected(object sender, SelectionChangedEventArgs e)
@@ -44,6 +43,10 @@ public partial class ManageStudentsPage : ContentPage
         if(e.CurrentSelection.FirstOrDefault() is Person elev)
         {
             await Navigation.PushAsync(new StudentInfoPage(elev));
+        }
+        else if(e.CurrentSelection.FirstOrDefault() is null)
+        {
+            await DisplayAlert("Fel", "Ingen elev vald", "OK");
         }
 
     }

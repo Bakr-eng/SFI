@@ -12,18 +12,19 @@
         </Grid>
 
 
-        <Button
-            Text="Visa elevere"
-            Clicked="OnShowStudentClicked"    
-            Margin="0,10" 
-        />
+       
 
         <Button
             Text="Lägg till elev"
             Clicked="OnAddStudentClicked"
             Margin="0,10" 
         />
-
+        
+        <Button
+            Text="Visa elevere"
+            Clicked="OnShowStudentClicked"    
+            Margin="0,10" 
+        />
 
         <CollectionView x:Name="StudentsList"
                 SelectionMode="Single"
