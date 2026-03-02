@@ -58,18 +58,25 @@ public partial class ShowStudentInfoPage : ContentPage
 
     private async void OnLevelClicked(object sender, EventArgs e)
     {
-        var db = new Data.MongoDb();
-
-        var nivå = await db.Nivåer
-            .Find(n => n.ElevId == _elev.Id)
-            .FirstOrDefaultAsync();
-        if (nivå == null)
+        try
         {
-            await DisplayAlert("Ingen nivå", "Nivåer hittades inte för denna elev.", "OK");
-            return;
+            var db = new Data.MongoDb();
+
+            var nivå = await db.Nivåer
+                .Find(n => n.ElevId == _elev.Id)
+                .FirstOrDefaultAsync();
+            if (nivå == null)
+            {
+                await DisplayAlert("Ingen nivå", "Nivåer hittades inte för denna elev.", "OK");
+                return;
+            }
+
+
+            await Navigation.PushAsync(new LevelPage(_elev, nivå));
         }
-
-
-        await Navigation.PushAsync(new LevelPage(_elev, nivå));
+        catch (Exception ex)
+        {
+            await DisplayAlert("Fel", $"Ett fel inträffade: {ex.Message}", "OK");
+        }
     }
 }

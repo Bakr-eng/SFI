@@ -5,8 +5,6 @@
              Title="LevelPage"
              xmlns:components="clr-namespace:SFI.View.Components">
     <VerticalStackLayout>
-
-        
         
         <Label Text="Uppdatera nivåer" FontSize="30" HorizontalOptions="Center" />
 
