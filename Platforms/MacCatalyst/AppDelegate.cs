@@ -1,6 +1,6 @@
 ﻿using Foundation;
 
-namespace SFI
+namespace SFI.Platforms.MacCatalyst
 {
     [Register("AppDelegate")]
     public class AppDelegate : MauiUIApplicationDelegate

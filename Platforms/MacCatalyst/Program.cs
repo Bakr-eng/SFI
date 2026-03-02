@@ -1,7 +1,7 @@
 ﻿using ObjCRuntime;
 using UIKit;
 
-namespace SFI
+namespace SFI.Platforms.MacCatalyst
 {
     public class Program
     {

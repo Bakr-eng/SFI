@@ -90,13 +90,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="View\Teacher\" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <Compile Update="View\ShowStudentInfoPage.xaml.cs">
 	    <DependentUpon>ShowStudentInfoPage.xaml</DependentUpon>
 	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="View\Teacher\" />
 	</ItemGroup>
 
 </Project>

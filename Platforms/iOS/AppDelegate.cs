@@ -1,6 +1,6 @@
 ﻿using Foundation;
 
-namespace SFI
+namespace SFI.Platforms.iOS
 {
     [Register("AppDelegate")]
     public class AppDelegate : MauiUIApplicationDelegate
