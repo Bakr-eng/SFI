@@ -78,7 +78,7 @@
 	  <MauiXaml Update="View\ManageStudentsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="View\StudentInfoPage.xaml">
+	  <MauiXaml Update="View\ShowStudentInfoPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="View\StudentPage.xaml">
@@ -87,6 +87,16 @@
 	  <MauiXaml Update="View\TeacherPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="View\Teacher\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="View\ShowStudentInfoPage.xaml.cs">
+	    <DependentUpon>ShowStudentInfoPage.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 </Project>

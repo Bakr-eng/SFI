@@ -33,6 +33,20 @@ public partial class AddNewStudentsPage : ContentPage
             StudentName.Text = string.Empty;
             StudentEmail.Text = string.Empty;
             Password.Text = string.Empty;
+
+
+            // Skapa en Nivåer-post för den nya eleven
+            var nivåer = new Nivåer
+            {
+                Id = ObjectId.GenerateNewId(),
+                ElevId = nyElev.Id,
+                Tala = 0,
+                Skriva = 0,
+                Läsa = 0,
+                Höra = 0,
+                UppdateringsDag = DateTime.Now
+            };
+            await db.Nivåer.InsertOneAsync(nivåer);
         }
         catch (Exception ex)
         {

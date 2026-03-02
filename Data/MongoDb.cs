@@ -10,7 +10,6 @@ namespace SFI.Data
 {
     internal class MongoDb
     {
-        // string s = "mongodb+srv://demlyoafrin_db_user:bakr123#@cluster.my90zyb.mongodb.net/?appName=Cluster";
         // string m = "mongodb+srv://sfiuser:bakr123@cluster.my90zyb.mongodb.net/?appName=Cluster";
         private readonly IMongoDatabase _database;
 
@@ -30,5 +29,8 @@ namespace SFI.Data
 
         public IMongoCollection<Meddelande> Meddelanden =>
             _database.GetCollection<Meddelande>("Meddelanden");
+
+        public IMongoCollection<Nivåer> Nivåer =>
+            _database.GetCollection<Nivåer>("Nivåer");
     }
 }

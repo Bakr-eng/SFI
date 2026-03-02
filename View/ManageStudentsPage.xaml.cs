@@ -51,7 +51,7 @@ public partial class ManageStudentsPage : ContentPage
     {
         if(e.CurrentSelection.FirstOrDefault() is Person elev)
         {
-            await Navigation.PushAsync(new StudentInfoPage(elev));
+            await Navigation.PushAsync(new ShowStudentInfoPage(elev));
         }
        
 

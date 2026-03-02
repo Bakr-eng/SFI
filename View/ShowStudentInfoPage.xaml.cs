@@ -3,10 +3,10 @@ using SFI.Models;
 
 namespace SFI.View;
 
-public partial class StudentInfoPage : ContentPage
+public partial class ShowStudentInfoPage : ContentPage
 {
 	private Person _elev;
-    public  StudentInfoPage(Person elev)
+    public  ShowStudentInfoPage(Person elev)
     {
         InitializeComponent();
         _elev = elev;
