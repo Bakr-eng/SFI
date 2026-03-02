@@ -60,38 +60,18 @@
 
 
 
-        <Label
-            Text="Nivåer:"
-            TextColor="CadetBlue"
-            Margin="0,40,0,0"
-        />
+      
 
-        <Label
-            x:Name="TalaLabel"
-            Text="Tala"
-            FontAttributes="Bold"
-            Margin="0,10,0,0"
-        />
-
-        <Label
-            x:Name="SkrivaLabel"
-            Text="Skriva"
-            FontAttributes="Bold"
-            Margin="0,10,0,0"
-        />
-        <Label
-            x:Name="LäsaLabel"
-            Text="Läsa"
-            FontAttributes="Bold"
-            Margin="0,10,0,0"
-        />
-
-        <Label
-            x:Name="HöraLabel"
-            Text="Höra"
-            FontAttributes="Bold"
-            Margin="0,10,0,0"
-        />
+        <Button
+            Text="Nivåer"
+            WidthRequest="90"
+            HeightRequest="40"
+            BackgroundColor="BlueViolet"
+            HorizontalOptions="Start"
+            VerticalOptions="Start"
+            Margin="0,20,10,0"
+            TextColor="White"
+            Clicked="OnLevelClicked" />
 
 
 

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SFI.View.LevelPage"
+             Title="LevelPage"
+             xmlns:components="clr-namespace:SFI.View.Components">
+    <VerticalStackLayout>
+
+        
+        
+        <Label Text="Uppdatera nivåer" FontSize="30" HorizontalOptions="Center" />
+
+        <components:GoBackButton/>
+
+
+        <Label Text="Tala" FontAttributes="Bold"/>
+        <Slider x:Name="TalaSlider" Minimum="0" Maximum="100" />
+
+        <Label Text="Skriva" FontAttributes="Bold" Margin="0,10,0,0"/>
+        <Slider x:Name="SkrivaSlider" Minimum="0" Maximum="100" />
+
+        <Label Text="Läsa" FontAttributes="Bold" Margin="0,10,0,0"/>
+        <Slider x:Name="LäsaSlider" Minimum="0" Maximum="100" />
+
+        <Label Text="Höra" FontAttributes="Bold" Margin="0,10,0,0"/>
+        <Slider x:Name="HöraSlider" Minimum="0" Maximum="100" />
+
+        <Button
+            Text="Spara nivåer" 
+            Margin="0,20,0,0" 
+            Clicked="OnSaveLevelsClicked"
+        />
+
+
+
+
+    </VerticalStackLayout>
+</ContentPage>

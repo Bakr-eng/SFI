@@ -16,7 +16,6 @@
 
         <Grid ColumnDefinitions="*, Auto">
             <components:LogoutButton Grid.Column="1"/>
-            <components:GoBackButton  Grid.Column="0"/>
         </Grid>
 
 

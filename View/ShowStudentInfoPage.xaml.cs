@@ -55,4 +55,21 @@ public partial class ShowStudentInfoPage : ContentPage
             await Navigation.PopAsync();
         }
     }
+
+    private async void OnLevelClicked(object sender, EventArgs e)
+    {
+        var db = new Data.MongoDb();
+
+        var nivå = await db.Nivåer
+            .Find(n => n.ElevId == _elev.Id)
+            .FirstOrDefaultAsync();
+        if (nivå == null)
+        {
+            await DisplayAlert("Ingen nivå", "Nivåer hittades inte för denna elev.", "OK");
+            return;
+        }
+
+
+        await Navigation.PushAsync(new LevelPage(_elev, nivå));
+    }
 }
