@@ -1,12 +1,14 @@
 using MongoDB.Bson;
 using MongoDB.Driver;
 using SFI.Models;
+using SFI.Repositories;
 using ZstdSharp.Unsafe;
 
 namespace SFI.View;
 
 public partial class ManageStudentsPage : ContentPage
 {
+    private readonly IPersonRepository _personRepo = new PersonRepository();
     protected override async void OnAppearing() // Laddar eleverna varje gång sidan visas
     {
         base.OnAppearing(); 
@@ -15,11 +17,7 @@ public partial class ManageStudentsPage : ContentPage
 
     private async Task LoadStudents() 
     {
-        var db = new Data.MongoDb();
-
-        var students = await db.Personer
-            .Find(p => p.KlassId == _Larare.KlassId && p.Roll == "Elev")
-            .ToListAsync();
+       var students = await _personRepo.GetStudentsByClass(_Larare.KlassId.Value); // Hämtar eleverna i lärarens klass
 
         StudentsList.ItemsSource = students;
 

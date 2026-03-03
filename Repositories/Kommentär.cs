@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SFI.Repositories
 {
-    internal class Idexemple
+    internal class Kommentär
     {
         // Det är ett exempel på hur man kan skapa ett nytt objekt av typen Person och infoga det i MongoDB-databasen.
         //var db = new Data.MongoDb();
