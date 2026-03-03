@@ -1,11 +1,13 @@
 using MongoDB.Driver;
 using SFI.Models;
+using SFI.Repositories;
 
 namespace SFI.View;
 
 public partial class LevelPage : ContentPage
 {
-	private Person _elev;
+	private readonly INivåerRepository _nivåRepo = new NivåerRepository();
+    private Person _elev;
 	private Nivåer _nivåer;
     public LevelPage(Person elev, Nivåer nivåer)
 	{
@@ -24,7 +26,6 @@ public partial class LevelPage : ContentPage
 
     private async void OnSaveLevelsClicked(object sender, EventArgs e)
     {
-		var db = new Data.MongoDb();
 
 		_nivåer.Tala = (int)TalaSlider.Value;
 		_nivåer.Skriva = (int)SkrivaSlider.Value;
@@ -32,12 +33,9 @@ public partial class LevelPage : ContentPage
 		_nivåer.Höra = (int)HöraSlider.Value;
 		_nivåer.UppdateringsDag = DateTime.Now;
 
-		await db.Nivåer.ReplaceOneAsync(
-			Builders<Nivåer>.Filter.Eq(n => n.Id, _nivåer.Id),
-			_nivåer
-			);
+		await _nivåRepo.Update(_nivåer);
 
-		await DisplayAlert("Sparat", "Nivåerna har sparats.", "OK");
+        await DisplayAlert("Sparat", "Nivåerna har sparats.", "OK");
 		await Navigation.PopAsync();
 
     }
