@@ -1,11 +1,13 @@
 using MongoDB.Driver;
 using SFI.Models;
+using SFI.Repositories;
 
 namespace SFI.View;
 
 public partial class ShowStudentInfoPage : ContentPage
 {
-	private Person _elev;
+    private readonly IKlassRepository _klassRepo = new KlassRepository();
+    private Person _elev;
     public  ShowStudentInfoPage(Person elev)
     {
         InitializeComponent();
@@ -23,11 +25,8 @@ public partial class ShowStudentInfoPage : ContentPage
 
         if (_elev.KlassId.HasValue)
         {
-            var db = new Data.MongoDb();
 
-            var klass = await db.Klasser
-                .Find(k => k.Id == _elev.KlassId.Value)
-                .FirstOrDefaultAsync();
+           var klass = await _klassRepo.GetById(_elev.KlassId.Value);
 
             if (klass != null)
             {

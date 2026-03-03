@@ -9,6 +9,14 @@ namespace SFI.View;
 public partial class ManageStudentsPage : ContentPage
 {
     private readonly IPersonRepository _personRepo = new PersonRepository();
+    private Person _Larare;
+
+    public ManageStudentsPage(Person lärare)
+    {
+        InitializeComponent();
+        _Larare = lärare;
+    }
+
     protected override async void OnAppearing() // Laddar eleverna varje gång sidan visas
     {
         base.OnAppearing(); 
@@ -27,23 +35,11 @@ public partial class ManageStudentsPage : ContentPage
             await DisplayAlert("Information", "Inga elever hittades i din klass.", "OK");
         }
     }
-
-
-
-    private Person _Larare;
-    public ManageStudentsPage(Person lärare)
-	{
-		InitializeComponent();
-		_Larare = lärare;
-    }
-
     private async void OnAddStudentClicked(object sender, EventArgs e)
     {
 		
 		await Navigation.PushAsync(new AddNewStudentsPage(_Larare)); // Skickar läraren objektet för att spara klassId
     }
-
-   
 
     private async void OnStudentSelected(object sender, SelectionChangedEventArgs e)
     {

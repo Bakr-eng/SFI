@@ -1,11 +1,16 @@
 using MongoDB.Bson;
 using SFI.Models;
+using SFI.Repositories;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
 namespace SFI.View;
 
 public partial class AddNewStudentsPage : ContentPage
 {
+    private readonly IPersonRepository _personRepo = new PersonRepository();
+    private readonly INivåerRepository _nivåRepo = new NivåerRepository();
+
     private Person _Lärare;
 	public AddNewStudentsPage(Person lärare)
 	{
@@ -17,8 +22,7 @@ public partial class AddNewStudentsPage : ContentPage
     {
         try
         {
-            var db = new Data.MongoDb();
-            var nyElev = new Models.Person
+            var nyElev = new Person
             {
                 Id = ObjectId.GenerateNewId(),
                 Name = StudentName.Text,
@@ -27,7 +31,7 @@ public partial class AddNewStudentsPage : ContentPage
                 Roll = "Elev",
                 KlassId = _Lärare.KlassId
             };
-            await db.Personer.InsertOneAsync(nyElev);
+            await _personRepo.Add(nyElev);
 
             await DisplayAlert("Klart", "Ny elev har lagts till!", "OK");
             StudentName.Text = string.Empty;
@@ -46,7 +50,7 @@ public partial class AddNewStudentsPage : ContentPage
                 Höra = 0,
                 UppdateringsDag = DateTime.Now
             };
-            await db.Nivåer.InsertOneAsync(nivåer);
+            await _nivåRepo.Add(nivåer);
         }
         catch (Exception ex)
         {
