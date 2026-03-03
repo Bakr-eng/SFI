@@ -29,7 +29,7 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Frame Padding="10" Margin="5" BorderColor="Gray">
-                        <Label Text="{Binding Name}" FontSize="20"/>
+                    <Label Text="{Binding Name}" FontSize="20"/>
                     </Frame>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

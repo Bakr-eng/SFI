@@ -13,11 +13,13 @@ public partial class LevelPage : ContentPage
 		_elev = elev;
 		_nivåer = nivåer;
 
+		_nivåer.UppdateringsDag = _nivåer.UppdateringsDag.ToLocalTime();   // för att spara svensk tid
+        BindingContext = _nivåer;
+
 		TalaSlider.Value = _nivåer.Tala;
 		SkrivaSlider.Value = _nivåer.Skriva;
 		LäsaSlider.Value = _nivåer.Läsa;
 		HöraSlider.Value = _nivåer.Höra;
-
     }
 
     private async void OnSaveLevelsClicked(object sender, EventArgs e)

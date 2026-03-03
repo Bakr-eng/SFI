@@ -13,7 +13,7 @@ public partial class ManageStudentsPage : ContentPage
         await LoadStudents();
     }
 
-    private async Task LoadStudents()
+    private async Task LoadStudents() 
     {
         var db = new Data.MongoDb();
 
