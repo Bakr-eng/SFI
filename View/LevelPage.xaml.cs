@@ -7,16 +7,14 @@ namespace SFI.View;
 public partial class LevelPage : ContentPage
 {
 	private readonly INivåerRepository _nivåRepo = new NivåerRepository();
-    private Person _elev;
 	private Nivåer _nivåer;
-    public LevelPage(Person elev, Nivåer nivåer)
+    public LevelPage( Nivåer nivåer)
 	{
 		InitializeComponent();
-		_elev = elev;
 		_nivåer = nivåer;
 
 		_nivåer.UppdateringsDag = _nivåer.UppdateringsDag.ToLocalTime();   // för att spara svensk tid
-        BindingContext = _nivåer;
+        BindingContext = _nivåer; 
 
 		TalaSlider.Value = _nivåer.Tala;
 		SkrivaSlider.Value = _nivåer.Skriva;

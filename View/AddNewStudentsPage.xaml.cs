@@ -38,8 +38,8 @@ public partial class AddNewStudentsPage : ContentPage
             StudentEmail.Text = string.Empty;
             Password.Text = string.Empty;
 
-
-            // Skapa en Nivåer-post för den nya eleven
+           
+            // Skapa en nivåer-post för den nya eleven
             var nivåer = new Nivåer
             {
                 Id = ObjectId.GenerateNewId(),
