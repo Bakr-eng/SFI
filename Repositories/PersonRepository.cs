@@ -40,10 +40,11 @@ namespace SFI.Repositories
         public Task<Person> GetById(ObjectId id)=>
             _collection.Find(p => p.Id == id).FirstOrDefaultAsync();
 
-
+        public Task<Person> GetByName(string name) =>
+            _collection.Find(p => p.Name == name).FirstOrDefaultAsync();
         public Task<List<Person>> GetStudentsByClass(ObjectId klassId)=>
             _collection.Find(p => p.KlassId == klassId && p.Roll == "Elev").ToListAsync();
 
-      
+       
     }
 }

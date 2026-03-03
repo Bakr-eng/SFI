@@ -11,6 +11,7 @@ namespace SFI.Repositories
     internal interface IPersonRepository
     {
         Task<Person> GetById(ObjectId id );
+        Task<Person> GetByName(string name);
         Task<List<Person>> GetAllStudents();
         Task<List<Person>> GetStudentsByClass(ObjectId klassId);
         Task<List<Person>> GetAllTeachers();
