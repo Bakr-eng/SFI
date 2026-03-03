@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SFI.Repositories
 {
-    internal class PersonRepository : IPersonRepository
+    public class PersonRepository : IPersonRepository
     {
         private readonly IMongoCollection<Person> _collection;
 
@@ -40,8 +40,10 @@ namespace SFI.Repositories
         public Task<Person> GetById(ObjectId id)=>
             _collection.Find(p => p.Id == id).FirstOrDefaultAsync();
 
-        public Task<Person> GetByName(string name) =>
-            _collection.Find(p => p.Name == name).FirstOrDefaultAsync();
+        public Task<Person> Login(string email, string password) =>
+            _collection.Find(p => p.Name == email && p.Lösenord == password)
+            .FirstOrDefaultAsync();
+
         public Task<List<Person>> GetStudentsByClass(ObjectId klassId)=>
             _collection.Find(p => p.KlassId == klassId && p.Roll == "Elev").ToListAsync();
 

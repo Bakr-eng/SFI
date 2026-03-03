@@ -19,9 +19,9 @@ namespace SFI
         private async void OnLogInClicked(object sender, EventArgs e)
         {
 
-            var person = await _personRepo.GetByName(Name.Text);
+            var person = await _personRepo.Login(email.Text, Password.Text);
 
-            if (person == null || person.Lösenord != Password.Text)
+            if (person == null)
             {
                 await DisplayAlert("Fel", "Felaktigt användarnamn eller lösenord", "OK");
                 return;
@@ -39,7 +39,7 @@ namespace SFI
             {
                 await DisplayAlert("Fel", "Okänd roll", "OK");
             }
-            Name.Text = string.Empty;
+            email.Text = string.Empty;
             Password.Text = string.Empty;
         }
     }

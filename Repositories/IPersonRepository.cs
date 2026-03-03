@@ -8,10 +8,11 @@ using System.Threading.Tasks;
 
 namespace SFI.Repositories
 {
-    internal interface IPersonRepository
+    public interface IPersonRepository
     {
         Task<Person> GetById(ObjectId id );
-        Task<Person> GetByName(string name);
+        Task<Person> Login(string email, string password);
+
         Task<List<Person>> GetAllStudents();
         Task<List<Person>> GetStudentsByClass(ObjectId klassId);
         Task<List<Person>> GetAllTeachers();

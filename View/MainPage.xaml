@@ -19,7 +19,7 @@
 
 
             <Entry
-                x:Name="Name"
+                x:Name="email"
                 Placeholder="användare namn"
                 BackgroundColor="BlanchedAlmond"
                 TextColor="Black"
