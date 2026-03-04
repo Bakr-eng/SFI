@@ -57,6 +57,6 @@ public partial class AddNewStudentsPage : ContentPage
             await DisplayAlert("Fel", $"Ett fel inträffade: {ex.Message}", "OK");
             return;
         }
-
+       
     }
 }
