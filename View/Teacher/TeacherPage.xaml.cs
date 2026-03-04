@@ -1,7 +1,7 @@
 using SFI.Models;
 using System.Threading.Tasks;
 
-namespace SFI.View;
+namespace SFI.View.Teacher;
 
 public partial class TeacherPage : ContentPage
 {
