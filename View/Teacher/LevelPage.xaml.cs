@@ -2,7 +2,7 @@ using MongoDB.Driver;
 using SFI.Models;
 using SFI.Repositories;
 
-namespace SFI.View;
+namespace SFI.View.Teacher;
 
 public partial class LevelPage : ContentPage
 {

@@ -1,8 +1,9 @@
 using MongoDB.Driver;
 using SFI.Models;
 using SFI.Repositories;
+using SFI.View.Teacher;
 
-namespace SFI.View;
+namespace SFI.View.Teacher;
 
 public partial class ShowStudentInfoPage : ContentPage
 {

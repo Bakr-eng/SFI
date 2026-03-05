@@ -37,7 +37,7 @@
            
 
             <Button
-                Text="Loga in"
+                Text="loga in"
                 Margin="70,50"
                 Clicked="OnLogInClicked"
                 />

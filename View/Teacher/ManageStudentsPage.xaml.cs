@@ -2,9 +2,10 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using SFI.Models;
 using SFI.Repositories;
+using SFI.View.Teacher;
 using ZstdSharp.Unsafe;
 
-namespace SFI.View;
+namespace SFI.View.Teacher;
 
 public partial class ManageStudentsPage : ContentPage
 {

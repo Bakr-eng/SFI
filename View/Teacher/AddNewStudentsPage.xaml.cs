@@ -4,7 +4,7 @@ using SFI.Repositories;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
-namespace SFI.View;
+namespace SFI.View.Teacher;
 
 public partial class AddNewStudentsPage : ContentPage
 {
