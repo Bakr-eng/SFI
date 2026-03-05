@@ -24,7 +24,7 @@
         <Editor x:Name="MessageEntry"
             Placeholder="Skriv ditt meddelande här..."
             AutoSize="TextChanges"
-            HeightRequest="150"
+            HeightRequest="170"
             Margin="0,20,0,0" />
 
         <Button Text="Skicka"

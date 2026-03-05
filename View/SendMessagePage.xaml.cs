@@ -21,8 +21,8 @@ public partial class SendMessagePage : ContentPage
 		if(_perosn.Roll == "Lärare")
 		{
             RecipientPicker.IsVisible = true;
-            RecipientLabel.Text = "mottagare:";
-            LoadRecipientsForTeacher();
+            RecipientLabel.Text = "Välj mottagare:";
+            LoadRecipientsForTeacher(); 
         }
 		else
 		{
@@ -39,7 +39,7 @@ public partial class SendMessagePage : ContentPage
 
         list.Add( new RecipientModels
         {
-            Id = _perosn.Id,
+            Id = _perosn.KlassId.Value,
             Name = "Hela klassen",
             Typ = "klass"
         });

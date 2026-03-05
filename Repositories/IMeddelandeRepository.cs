@@ -14,6 +14,8 @@ namespace SFI.Repositories
         Task<List<Meddelande>> GetAllForUser(ObjectId userId);
         Task<List<Meddelande>> GetAllForClass(ObjectId klassId);
         Task<List<Meddelande>> GetConversation(ObjectId user1, ObjectId user2);
+        Task<List<Meddelande>> GetMessagesForStudent(ObjectId elevId, ObjectId klassId);
+
         Task Add(Meddelande meddelande);
         Task Update(Meddelande meddelande);
         Task Delete(ObjectId id);
