@@ -42,7 +42,7 @@ namespace SFI.Repositories
         public Task<List<Meddelande>> GetMessagesForStudent(ObjectId elevId, ObjectId klassId) =>
         
              _collection.Find(m =>
-            (m.MotagareTyp == "elev" && m.MottagareId == elevId) ||
+            (m.MotagareTyp == "Elev" && m.MottagareId == elevId) ||
             (m.MotagareTyp == "klass" && m.MottagareId == klassId))
             .SortByDescending(m => m.Tid)
             .ToListAsync();
