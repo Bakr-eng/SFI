@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SFI.Models
 {
-    public class RecipientModels
+    public class RecipientModels 
     {
         // Det finns bara för UI, int för databasen
         public ObjectId Id { get; set; }

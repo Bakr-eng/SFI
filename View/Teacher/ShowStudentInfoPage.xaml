@@ -50,8 +50,5 @@
             Clicked="OnLevelClicked" />
 
 
-
-
-
     </VerticalStackLayout>
 </ContentPage>

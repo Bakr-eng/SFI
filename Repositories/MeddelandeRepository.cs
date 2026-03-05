@@ -39,15 +39,14 @@ namespace SFI.Repositories
             (m.AvsändareId == user2 && m.MottagareId == user1))
             .SortBy(m => m.Tid)
             .ToListAsync();
-        public Task<List<Meddelande>> GetMessagesForStudent(ObjectId elevId, ObjectId klassId)
-        {
-            return _collection.Find(m =>
-                (m.MotagareTyp == "elev" && m.MottagareId == elevId) ||
-                (m.MotagareTyp == "klass" && m.MottagareId == klassId)
-            )
+        public Task<List<Meddelande>> GetMessagesForStudent(ObjectId elevId, ObjectId klassId) =>
+        
+             _collection.Find(m =>
+            (m.MotagareTyp == "elev" && m.MottagareId == elevId) ||
+            (m.MotagareTyp == "klass" && m.MottagareId == klassId))
             .SortByDescending(m => m.Tid)
             .ToListAsync();
-        }
+        
         public async Task Add(Meddelande meddelande)
         {
             await _collection.InsertOneAsync(meddelande);

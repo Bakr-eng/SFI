@@ -29,7 +29,7 @@ namespace SFI.Models
         [BsonElement("klassId")]
         public ObjectId? KlassId { get; set; }
 
-        [BsonElement]
+        [BsonElement("lärareId")]
         public ObjectId? LärareId { get; set; }
     }
 }

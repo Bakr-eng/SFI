@@ -29,9 +29,11 @@ public partial class AddNewStudentsPage : ContentPage
                 Email = StudentEmail.Text,
                 Lösenord = Password.Text,
                 Roll = "Elev",
-                KlassId = _Lärare.KlassId
+                KlassId = _Lärare.KlassId,
+                LärareId = _Lärare.Id
             };
             await _personRepo.Add(nyElev);
+            
 
             await DisplayAlert("Klart", "Ny elev har lagts till!", "OK");
             StudentName.Text = string.Empty;

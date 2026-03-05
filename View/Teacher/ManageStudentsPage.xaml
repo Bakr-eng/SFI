@@ -11,16 +11,10 @@
             <components:GoBackButton  Grid.Column="0"/>
         </Grid>
 
-
-
-
         <Button
             Text="Lägg till elev"
             Clicked="OnAddStudentClicked"
             Margin="0,10" />
-
-
-
 
 
         <CollectionView x:Name="StudentsList"

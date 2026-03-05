@@ -7,7 +7,7 @@ namespace SFI.View.Teacher;
 public partial class LevelPage : ContentPage
 {
 	private readonly INivåerRepository _nivåRepo = new NivåerRepository();
-	private Nivåer _nivåer;
+	private readonly Nivåer _nivåer;
     public LevelPage( Nivåer nivåer)
 	{
 		InitializeComponent();

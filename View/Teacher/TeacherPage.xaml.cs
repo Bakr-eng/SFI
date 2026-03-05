@@ -5,7 +5,7 @@ namespace SFI.View.Teacher;
 
 public partial class TeacherPage : ContentPage
 {
-	private Person _Larare;
+    private readonly Person _Larare;
     public TeacherPage(Person Larare)
 	{
 		InitializeComponent();

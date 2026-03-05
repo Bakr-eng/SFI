@@ -10,7 +10,7 @@ public partial class ShowStudentInfoPage : ContentPage
     private readonly IKlassRepository _klassRepo = new KlassRepository();
     private readonly IPersonRepository _personRepo = new PersonRepository();
     private readonly INivåerRepository _nivåRepo = new NivåerRepository();
-    private Person _elev;
+    private readonly Person _elev;
     public  ShowStudentInfoPage(Person elev)
     {
         InitializeComponent();
@@ -66,6 +66,7 @@ public partial class ShowStudentInfoPage : ContentPage
             }
 
             await Navigation.PushAsync(new LevelPage( nivå)); 
+
         }
         catch (Exception ex)
         {

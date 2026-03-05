@@ -24,7 +24,7 @@ public partial class SendMessagePage : ContentPage
             RecipientLabel.Text = "Välj mottagare:";
             LoadRecipientsForTeacher(); 
         }
-		else
+		else if (_perosn.Roll == "Elev")
 		{
             RecipientPicker.IsVisible = false;
             RecipientLabel.Text = "Meddelande till din lärare";
@@ -50,10 +50,9 @@ public partial class SendMessagePage : ContentPage
             {
                 Id = elev.Id,
                 Name = elev.Name,
-                Typ = "elev"
+                Typ = "Elev"
             });
         }
-
 
         RecipientPicker.ItemsSource = list;
 
@@ -79,7 +78,7 @@ public partial class SendMessagePage : ContentPage
             meddelande.MotagareTyp = selected.Typ;  // "klass" eller "elev"
             meddelande.MottagareId = selected.Id;
         }
-        else
+        else if (_perosn.Roll == "Elev")
         {
             // Elev skickar alltid till sin lärare
             meddelande.MotagareTyp = "lärare";

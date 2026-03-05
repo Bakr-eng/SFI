@@ -14,10 +14,6 @@
                 Margin="0,40"
                 />
 
-           
-
-
-
             <Entry
                 x:Name="email"
                 Placeholder="användare namn"
