@@ -20,15 +20,26 @@
 
 
         <Button
-                Text="Hantera elever"
-                WidthRequest="500"
-                HeightRequest="40"
-                BackgroundColor="DarkGray"
-                HorizontalOptions="Center"
-                VerticalOptions="Center"
-                Margin="0,20,0,0"
-                TextColor="Black"
-                Clicked="OnManageStudentsClicked" />
+            Text="Hantera elever"
+            WidthRequest="500"
+            HeightRequest="40"
+            BackgroundColor="DarkGray"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            Margin="0,20,0,0"
+            TextColor="Black"
+            Clicked="OnManageStudentsClicked" />
+
+        <Button
+            Text="Meddelande"
+            WidthRequest="500"
+            HeightRequest="40"
+            BackgroundColor="DarkGray"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            Margin="0,20,0,0"
+            TextColor="Black"
+            Clicked="OmMessageClicked" />
 
 
 

@@ -20,13 +20,16 @@ namespace SFI.Models
         public string MotagareTyp { get; set; }
 
         [BsonElement("mottagareId")]
-        public ObjectId MottagareId { get; set; }
+        public ObjectId? MottagareId { get; set; }
 
         [BsonElement("text")]
         public string Text { get; set; }
 
         [BsonElement("Tid")]
         public DateTime Tid { get; set; }
+
+        [BsonElement("lästs")]
+        public bool Lästs { get; set; }
 
     }
 }

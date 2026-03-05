@@ -1,6 +1,7 @@
 using SFI.Models;
+using System.Threading.Tasks;
 
-namespace SFI.View;
+namespace SFI.View.Student;
 
 public partial class StudentPage : ContentPage
 {
@@ -9,6 +10,7 @@ public partial class StudentPage : ContentPage
 	{
 		InitializeComponent();
 		_Elev = Elev;
-		welcomeLabel.Text = $"Välkommen, {_Elev.Name}!";
     }
+
+    
 }
