@@ -21,24 +21,18 @@
              Margin="0,20,0,0"
              TextColor="Black"
              Clicked="OmMessageClicked" />
-        
 
-        <Label Text="Dina meddelanden"
-            FontSize="22"
-            Margin="0,0,0,10" />
-
-        <CollectionView x:Name="MessagesList">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Frame BorderColor="Gray" Padding="10" Margin="0,5">
-                        <VerticalStackLayout>
-                            <Label Text="{Binding Text}" FontSize="16" />
-                            <Label Text="{Binding Tid}" FontSize="12" TextColor="Gray" />
-                        </VerticalStackLayout>
-                    </Frame>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+        <Button 
+            Text="Vädret"
+            WidthRequest="500"
+            HeightRequest="40"
+            BackgroundColor="BurlyWood"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            Margin="0,10,0,0"
+            TextColor="Black"
+            Clicked="OnWeatherClicked"
+        />
 
 
 

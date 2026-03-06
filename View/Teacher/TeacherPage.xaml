@@ -41,6 +41,18 @@
             TextColor="Black"
             Clicked="OmMessageClicked" />
 
+        <Button 
+            Text="Vädret"
+            WidthRequest="500"
+            HeightRequest="40"
+            BackgroundColor="BurlyWood"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            Margin="0,10,0,0"
+            TextColor="Black"
+            Clicked="OnWeatherClicked"
+        />
+
 
 
     </VerticalStackLayout>
