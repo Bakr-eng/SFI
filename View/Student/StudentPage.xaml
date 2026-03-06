@@ -2,12 +2,30 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SFI.View.Student.StudentPage"
-             Title="Student sida">
+             Title="Student sida"
+             xmlns:components="clr-namespace:SFI.View.Components">
     <VerticalStackLayout>
 
+
+        <Grid ColumnDefinitions="*, Auto">
+            <components:LogoutButton Grid.Column="1"/>
+        </Grid>
+        
+        <Button
+             Text="Meddelande"
+             WidthRequest="500"
+             HeightRequest="40"
+             BackgroundColor="DarkGray"
+             HorizontalOptions="Center"
+             VerticalOptions="Center"
+             Margin="0,20,0,0"
+             TextColor="Black"
+             Clicked="OmMessageClicked" />
+        
+
         <Label Text="Dina meddelanden"
-           FontSize="22"
-           Margin="0,0,0,10" />
+            FontSize="22"
+            Margin="0,0,0,10" />
 
         <CollectionView x:Name="MessagesList">
             <CollectionView.ItemTemplate>

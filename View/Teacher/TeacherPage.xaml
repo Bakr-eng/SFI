@@ -31,7 +31,7 @@
             Clicked="OnManageStudentsClicked" />
 
         <Button
-            Text="Meddelande"
+            Text="Skicka Meddelande"
             WidthRequest="500"
             HeightRequest="40"
             BackgroundColor="DarkGray"

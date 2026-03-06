@@ -81,7 +81,7 @@ public partial class SendMessagePage : ContentPage
         else if (_perosn.Roll == "Elev")
         {
             // Elev skickar alltid till sin lärare
-            meddelande.MotagareTyp = "lärare";
+            meddelande.MotagareTyp = "Lärare";
             meddelande.MottagareId = _perosn.LärareId;
         }
 
@@ -89,5 +89,20 @@ public partial class SendMessagePage : ContentPage
 
 		await DisplayAlert("Skickat", "Meddelande har skickats!", "ok");
 		await Navigation.PopAsync();
+    }
+
+    private async void ONSeeMessagesClicked(object sender, EventArgs e)
+    {
+        if (_perosn.Roll == "Elev")
+        {
+            var messages = await _meddelandeRepo.GetMessagesForStudent(_perosn.Id, _perosn.KlassId.Value);
+            MessagesList.ItemsSource = messages;
+        }
+        else if (_perosn.Roll == "Lärare")
+        {
+            var messages = await _meddelandeRepo.GetMessagesForTeacher(_perosn.Id, _perosn.KlassId.Value);
+            MessagesList.ItemsSource = messages;
+        }
+
     }
 }

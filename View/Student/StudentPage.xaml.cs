@@ -13,15 +13,9 @@ public partial class StudentPage : ContentPage
 		InitializeComponent();
 		_elev = elev;
 
-		LoadMessages();
     }
-
-	private async void LoadMessages()
-	{
-		var messages = await _meddelandeRepo.GetMessagesForStudent(_elev.Id, _elev.KlassId.Value);
-        MessagesList.ItemsSource = messages;
-
+    private async void OmMessageClicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new SendMessagePage(_elev));
     }
-
-    
 }

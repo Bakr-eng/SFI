@@ -42,11 +42,21 @@ namespace SFI.Repositories
         public Task<List<Meddelande>> GetMessagesForStudent(ObjectId elevId, ObjectId klassId) =>
         
              _collection.Find(m =>
-            (m.MotagareTyp == "Elev" && m.MottagareId == elevId) ||
-            (m.MotagareTyp == "klass" && m.MottagareId == klassId))
+             (m.MotagareTyp == "Elev" && m.MottagareId == elevId) || // till eleven
+             (m.MotagareTyp == "klass" && m.MottagareId == klassId) || // till klassen
+             (m.AvsändareId == elevId && m.MotagareTyp == "Lärare"))  // eleven skickade till läraren
+             .SortByDescending(m => m.Tid)
+             .ToListAsync();
+
+        public Task<List<Meddelande>> GetMessagesForTeacher(ObjectId lärareId, ObjectId klassId) =>
+            _collection.Find(m =>
+            (m.MotagareTyp == "klass" && m.MottagareId == klassId) ||
+            (m.MotagareTyp == "Elev" && m.MottagareId == lärareId) ||
+            (m.MotagareTyp == "Lärare" && m.MottagareId == lärareId))
             .SortByDescending(m => m.Tid)
             .ToListAsync();
-        
+
+
         public async Task Add(Meddelande meddelande)
         {
             await _collection.InsertOneAsync(meddelande);
@@ -59,6 +69,8 @@ namespace SFI.Repositories
         {
             await _collection.DeleteOneAsync(m => m.Id == id);
         }
+
+      
     }
     
 }
