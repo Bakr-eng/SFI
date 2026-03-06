@@ -5,10 +5,7 @@
              Title="WeatherPage">
     <VerticalStackLayout>
 
-        <Label
-            Text="{Binding WeatherText}"
-            VerticalOptions="Center"
-            HorizontalOptions="Center"/>
+       
 
         <Entry
             Placeholder="Ange stad"
@@ -17,6 +14,13 @@
         <Button
             Text="Hämta Väder"
             Command="{Binding LoadWeatherCommand}" />
+
+
+        <Label
+            Text="{Binding WeatherText}"
+            VerticalOptions="Center"
+            HorizontalOptions="Start"
+            Margin="10,30,0,0"    />
 
     </VerticalStackLayout>
 </ContentPage>
