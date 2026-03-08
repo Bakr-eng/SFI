@@ -15,7 +15,6 @@ namespace SFI.ViewModels
     class WeatherPageViewModels : INotifyPropertyChanged
     {
         private string city;
-
         public string City
         {
             get => city;

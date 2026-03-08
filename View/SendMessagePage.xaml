@@ -4,64 +4,88 @@
              x:Class="SFI.View.SendMessagePage"
              Title="SendMessagePage"
              xmlns:components="clr-namespace:SFI.View.Components">
-    <VerticalStackLayout>
+    <ScrollView>
+        <VerticalStackLayout>
 
-        <Grid ColumnDefinitions="*, Auto">
-            <components:GoBackButton  Grid.Column="0"/>
-        </Grid>
+                <Grid ColumnDefinitions="*, Auto">
+                <components:GoBackButton  Grid.Column="0"/>
+            </Grid>
 
+    
+                <Label x:Name="RecipientLabel"
+               Text="Mottagare"
+               FontSize="18"
+               Margin="0,0,0,20" />
 
-        <Label x:Name="RecipientLabel"
-           Text="Mottagare"
-           FontSize="18"
-           Margin="0,0,0,20" />
+                <Picker x:Name="RecipientPicker"
+                Title="Välj mottagare"
+                IsVisible="False"
+                ItemDisplayBinding="{Binding Name}" />
 
-        <Picker x:Name="RecipientPicker"
-            Title="Välj mottagare"
-            IsVisible="False"
-            ItemDisplayBinding="{Binding Name}" />
+                <Editor x:Name="MessageEntry"
+                Placeholder="Skriv ditt meddelande här..."
+                AutoSize="TextChanges"
+                HeightRequest="170"
+                Margin="0,20,0,0" />
 
-        <Editor x:Name="MessageEntry"
-            Placeholder="Skriv ditt meddelande här..."
-            AutoSize="TextChanges"
-            HeightRequest="170"
-            Margin="0,20,0,0" />
+                <Button Text="Skicka"
+                Clicked="OnSendClicked"
+                BackgroundColor="#4CAF50"
+                TextColor="White"
+                CornerRadius="10"
+                HeightRequest="50"
+                Margin="0,20,0,0" />
 
-        <Button Text="Skicka"
-            Clicked="OnSendClicked"
-            BackgroundColor="#4CAF50"
-            TextColor="White"
-            CornerRadius="10"
-            HeightRequest="50"
-            Margin="0,20,0,0" />
+                <Button
+                Text="Mina Meddelande"
+                WidthRequest="170"
+                HeightRequest="40"
+                BackgroundColor="DarkCyan"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                Margin="0,20,340,0"
+                TextColor="Black"
+                Clicked="ONSeeMessagesClicked" />
 
-        <Button
-      Text="Mina Meddelande"
-      WidthRequest="170"
-      HeightRequest="40"
-      BackgroundColor="Gold"
-      HorizontalOptions="Center"
-      VerticalOptions="Center"
-      Margin="0,20,340,0"
-      TextColor="Black"
-      Clicked="ONSeeMessagesClicked" />
+                <Label Text="Dina meddelanden"
+                FontSize="15"
+                Margin="0,0,0,10" />
 
-        <Label Text="Dina meddelanden"
-            FontSize="15"
-            Margin="0,0,0,10" />
+    
+                <Grid ColumnDefinitions="Auto, *">
+                <CollectionView x:Name="MessagesList">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame 
+                                BorderColor="Red"
+                                BackgroundColor="Gray"
+                                Padding="10"
+                                Margin="0,5,0,0"
+                                HorizontalOptions="Start"
+                                MaximumWidthRequest="280"
+                                CornerRadius="10">
 
-        <CollectionView x:Name="MessagesList">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Frame BorderColor="Gray" Padding="10" Margin="0,5">
-                        <VerticalStackLayout>
-                            <Label Text="{Binding Text}" FontSize="16" />
-                            <Label Text="{Binding Tid}" FontSize="12" TextColor="Gray" />
-                        </VerticalStackLayout>
-                    </Frame>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+    
+                                    <VerticalStackLayout>
+                                    <Label 
+                                        Text="{Binding AvsändareNamn}"
+                                        FontAttributes="Bold"
+                                        FontSize="14"
+                                        TextColor="Yellow" />
+                                    <Label 
+                                        Text="{Binding Text}" 
+                                        FontSize="16" />
+                                    <Label 
+                                        Text="{Binding Tid}" 
+                                        FontSize="12" 
+                                        TextColor="Gray" />
+                                </VerticalStackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Grid>
 
-    </VerticalStackLayout>
+            </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

@@ -93,16 +93,26 @@ public partial class SendMessagePage : ContentPage
 
     private async void ONSeeMessagesClicked(object sender, EventArgs e)
     {
+        List<Meddelande> messages;
         if (_perosn.Roll == "Elev")
         {
-            var messages = await _meddelandeRepo.GetMessagesForStudent(_perosn.Id, _perosn.KlassId.Value);
-            MessagesList.ItemsSource = messages;
+            messages = await _meddelandeRepo.GetMessagesForStudent(_perosn.Id, _perosn.KlassId.Value);
+           // MessagesList.ItemsSource = messages;
         }
-        else if (_perosn.Roll == "Lärare")
+        else
         {
-            var messages = await _meddelandeRepo.GetMessagesForTeacher(_perosn.Id, _perosn.KlassId.Value);
-            MessagesList.ItemsSource = messages;
+             messages = await _meddelandeRepo.GetMessagesForTeacher(_perosn.Id, _perosn.KlassId.Value);
+          //  MessagesList.ItemsSource = messages;
         }
+
+        var perosnRepo = new PersonRepository();
+        foreach (var m in messages)
+        {
+            var avsändare = await perosnRepo.GetById(m.AvsändareId);
+            m.AvsändareNamn = avsändare?.Name ?? "Okänd";
+        }
+
+        MessagesList.ItemsSource = messages;
 
     }
 }

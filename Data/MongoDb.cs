@@ -10,7 +10,6 @@ namespace SFI.Data
 {
     internal class MongoDb
     {
-        // string m = "mongodb+srv://sfiuser:bakr123@cluster.my90zyb.mongodb.net/?appName=Cluster";
         private readonly IMongoDatabase _database;
 
         public MongoDb()

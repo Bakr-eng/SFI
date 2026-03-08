@@ -16,6 +16,9 @@ namespace SFI.Models
         [BsonElement("avsändareId")]
         public ObjectId AvsändareId { get; set; }
 
+        [BsonIgnore] 
+        public string AvsändareNamn { get; set; } // för att se namnet på meddelande
+
         [BsonElement("motagareTyp")]
         public string MotagareTyp { get; set; }
 
