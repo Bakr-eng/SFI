@@ -25,9 +25,9 @@ namespace SFI.Repositories
             }
         }
 
-        private readonly IMongoCollection<Person> _collection; // bytade till private 
+        private readonly IMongoCollection<Person> _collection;
 
-        private PersonRepository() // då det är private
+        private PersonRepository() // Bytade till private
         {
             var db = new Data.MongoDb();
             _collection = db.Personer;

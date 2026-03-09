@@ -12,8 +12,8 @@ namespace SFI.Repositories
 {
     internal class MeddelandeRepository : IMeddelandeRepository
     {
-        private static MeddelandeRepository _instance;
-        public static MeddelandeRepository Instance
+        private static MeddelandeRepository _instance; // Singleton
+        public static MeddelandeRepository Instance // Skapar instansen första gången den används.
         {
             get
             {
@@ -23,7 +23,7 @@ namespace SFI.Repositories
             }
         }
 
-        private readonly IMongoCollection<Meddelande> _collection;
+        private readonly IMongoCollection<Meddelande> _collection; // bytade till private
 
         private MeddelandeRepository()
         {

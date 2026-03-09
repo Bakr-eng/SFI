@@ -22,10 +22,10 @@ namespace SFI.Repositories
                 client.DefaultRequestHeaders.Add("X-Api-Key", ApiKey);
 
                 var geoResponse = await client.GetAsync($"v1/geocoding?city={city}");
-                //if (!geoResponse.IsSuccessStatusCode)
-                //{
-                //    return null;
-                //}
+                if (!geoResponse.IsSuccessStatusCode)
+                {
+                    return null;
+                }
                 var geoJson = await geoResponse.Content.ReadAsStringAsync();
                 var geoResults = JsonSerializer.Deserialize<List<GeoResult>>(geoJson);
                 if (geoResults == null || geoResults.Count == 0)

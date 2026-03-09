@@ -1,13 +1,15 @@
 using MongoDB.Bson;
 using SFI.Models;
 using SFI.Repositories;
+using SFI.Services;
 using System.Threading.Tasks;
 
 namespace SFI.View;
 
 public partial class SendMessagePage : ContentPage
 {
-	private readonly IMeddelandeRepository _meddelandeRepo = MeddelandeRepository.Instance;
+    private readonly MessageService _messageService = MessageService.Instance; // för att hämra meddelande
+    private readonly IMeddelandeRepository _meddelandeRepo = MeddelandeRepository.Instance; // bara för add()
 	private readonly Person _perosn;
     public SendMessagePage(Person perosn)
 	{
@@ -103,24 +105,28 @@ public partial class SendMessagePage : ContentPage
 
     private async void ONSeeMessagesClicked(object sender, EventArgs e)
     {
-        List<Meddelande> messages;
-        if (_perosn.Roll == "Elev")
-        {
-            messages = await _meddelandeRepo.GetMessagesForStudent(_perosn.Id, _perosn.KlassId.Value);
-        }
-        else
-        {
-             messages = await _meddelandeRepo.GetMessagesForTeacher(_perosn.Id, _perosn.KlassId.Value);
-        }
+        //List<Meddelande> messages;
+        //if (_perosn.Roll == "Elev")
+        //{
+        //    messages = await _meddelandeRepo.GetMessagesForStudent(_perosn.Id, _perosn.KlassId.Value);
+        //}
+        //else
+        //{
+        //     messages = await _meddelandeRepo.GetMessagesForTeacher(_perosn.Id, _perosn.KlassId.Value);
+        //}
 
-        var perosnRepo = PersonRepository.Instance;
-        foreach (var m in messages)
-        {
-            var avsändare = await perosnRepo.GetById(m.AvsändareId);
-            m.AvsändareNamn = avsändare?.Name ?? "Okänd";
-        }
+        //var perosnRepo = PersonRepository.Instance;
+        //foreach (var m in messages)
+        //{
+        //    var avsändare = await perosnRepo.GetById(m.AvsändareId);
+        //    m.AvsändareNamn = avsändare?.Name ?? "Okänd";
+        //}
 
-        MessagesList.ItemsSource = messages;
+        //MessagesList.ItemsSource = messages;
+
+        // Med facade skriver vi bara 
+        var message = await _messageService.GetMessagesForUser(_perosn);
+        MessagesList.ItemsSource = message;
 
     }
 }
