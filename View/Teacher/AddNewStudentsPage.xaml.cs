@@ -8,7 +8,7 @@ namespace SFI.View.Teacher;
 
 public partial class AddNewStudentsPage : ContentPage
 {
-    private readonly IPersonRepository _personRepo = new PersonRepository();
+    private readonly IPersonRepository _personRepo = PersonRepository.Instance;
     private readonly INivåerRepository _nivåRepo = new NivåerRepository();
 
     private Person _Lärare;

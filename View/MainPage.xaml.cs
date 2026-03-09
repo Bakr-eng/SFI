@@ -12,7 +12,7 @@ namespace SFI
     
     public partial class MainPage : ContentPage
     {
-        private readonly IPersonRepository _personRepo = new PersonRepository();
+        private readonly IPersonRepository _personRepo = PersonRepository.Instance;
         public MainPage()
         {
             InitializeComponent();

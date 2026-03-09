@@ -12,9 +12,20 @@ namespace SFI.Repositories
 {
     internal class MeddelandeRepository : IMeddelandeRepository
     {
+        private static MeddelandeRepository _instance;
+        public static MeddelandeRepository Instance
+        {
+            get
+            {
+                if (_instance == null)
+                    _instance = new MeddelandeRepository();
+                return _instance;
+            }
+        }
+
         private readonly IMongoCollection<Meddelande> _collection;
 
-        public MeddelandeRepository()
+        private MeddelandeRepository()
         {
             var db = new MongoDb();
             _collection = db.Meddelanden;
@@ -51,8 +62,8 @@ namespace SFI.Repositories
         public Task<List<Meddelande>> GetMessagesForTeacher(ObjectId lärareId, ObjectId klassId) =>
             _collection.Find(m =>
             (m.MotagareTyp == "klass" && m.MottagareId == klassId) ||
-            (m.MotagareTyp == "Elev" && m.MottagareId == lärareId) ||
-            (m.MotagareTyp == "Lärare" && m.MottagareId == lärareId))
+            (m.MotagareTyp == "Lärare" && m.MottagareId == lärareId) ||
+            (m.AvsändareId == lärareId && m.MotagareTyp == "Elev"))
             .SortByDescending(m => m.Tid)
             .ToListAsync();
 

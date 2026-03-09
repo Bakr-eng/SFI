@@ -11,13 +11,28 @@ namespace SFI.Repositories
 {
     public class PersonRepository : IPersonRepository
     {
-        private readonly IMongoCollection<Person> _collection;
+       
 
-        public PersonRepository()
+
+        private static PersonRepository _instance; // Singleton
+        public static PersonRepository Instance // man slipper skapa new PersonRepository() i varje metod
+        {
+            get
+            {
+                if (_instance == null)
+                    _instance = new PersonRepository();
+                return _instance;
+            }
+        }
+
+        private readonly IMongoCollection<Person> _collection; // bytade till private 
+
+        private PersonRepository() // då det är private
         {
             var db = new Data.MongoDb();
             _collection = db.Personer;
         }
+
         public async Task Add(Person person)
         {
             await _collection.InsertOneAsync(person);
@@ -30,20 +45,15 @@ namespace SFI.Repositories
         {
             await _collection.DeleteOneAsync(p => p.Id == id);
         }
-
         public Task<List<Person>> GetAllStudents() => // Behöver inte skirva "return" eftersom det är en expression-bodied member
             _collection.Find(p => p.Roll == "Elev").ToListAsync();
-
         public Task<List<Person>> GetAllTeachers() =>
             _collection.Find(p => p.Roll == "Lärare").ToListAsync();
-
         public Task<Person> GetById(ObjectId id)=>
             _collection.Find(p => p.Id == id).FirstOrDefaultAsync();
-
         public Task<Person> Login(string email, string password) =>
             _collection.Find(p => p.Name == email && p.Lösenord == password)
             .FirstOrDefaultAsync();
-
         public Task<List<Person>> GetStudentsByClass(ObjectId klassId)=>
             _collection.Find(p => p.KlassId == klassId && p.Roll == "Elev").ToListAsync();
 

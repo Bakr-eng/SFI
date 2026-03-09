@@ -7,7 +7,6 @@ namespace SFI.View.Student;
 public partial class StudentPage : ContentPage
 {
 	private readonly Person _elev;
-	private readonly IMeddelandeRepository _meddelandeRepo = new MeddelandeRepository();
     public StudentPage(Person elev)
 	{
 		InitializeComponent();

@@ -7,7 +7,7 @@ namespace SFI.View;
 
 public partial class SendMessagePage : ContentPage
 {
-	private readonly IMeddelandeRepository _meddelandeRepo = new MeddelandeRepository();
+	private readonly IMeddelandeRepository _meddelandeRepo = MeddelandeRepository.Instance;
 	private readonly Person _perosn;
     public SendMessagePage(Person perosn)
 	{
@@ -32,7 +32,7 @@ public partial class SendMessagePage : ContentPage
 	}
 	private async void LoadRecipientsForTeacher()
 	{
-        var elevRepo = new PersonRepository();
+        var elevRepo =  PersonRepository.Instance;
         var elever = await elevRepo.GetStudentsByClass(_perosn.KlassId.Value);
 
         var list = new List<RecipientModels>();
@@ -74,12 +74,22 @@ public partial class SendMessagePage : ContentPage
                 await DisplayAlert("Fel", "Välj en mottagare.", "OK");
                 return;
             }
+            if (string.IsNullOrWhiteSpace(MessageEntry.Text))
+            {
+                await DisplayAlert("Fel","Meddelande kan inte bli tom ", "OK");
+                return;
+            }
 
             meddelande.MotagareTyp = selected.Typ;  // "klass" eller "elev"
             meddelande.MottagareId = selected.Id;
         }
         else if (_perosn.Roll == "Elev")
         {
+            if (string.IsNullOrWhiteSpace(MessageEntry.Text))
+            {
+                await DisplayAlert("Fel", "Meddelande kan inte bli tom ", "OK");
+                return;
+            }
             // Elev skickar alltid till sin lärare
             meddelande.MotagareTyp = "Lärare";
             meddelande.MottagareId = _perosn.LärareId;
@@ -103,7 +113,7 @@ public partial class SendMessagePage : ContentPage
              messages = await _meddelandeRepo.GetMessagesForTeacher(_perosn.Id, _perosn.KlassId.Value);
         }
 
-        var perosnRepo = new PersonRepository();
+        var perosnRepo = PersonRepository.Instance;
         foreach (var m in messages)
         {
             var avsändare = await perosnRepo.GetById(m.AvsändareId);
