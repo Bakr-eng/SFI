@@ -19,7 +19,7 @@ namespace SFI.Repositories
             {
                 var client = new HttpClient();
                 client.BaseAddress = new Uri("https://api.api-ninjas.com/");
-                client.DefaultRequestHeaders.Add("X-Api-Key", "");
+                client.DefaultRequestHeaders.Add("X-Api-Key", ApiKey);
 
                 var geoResponse = await client.GetAsync($"v1/geocoding?city={city}");
                 //if (!geoResponse.IsSuccessStatusCode)

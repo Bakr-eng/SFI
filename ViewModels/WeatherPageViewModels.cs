@@ -36,7 +36,7 @@ namespace SFI.ViewModels
             }
         }
 
-        public ICommand LoadWeatherCommand { get;}
+        public ICommand LoadWeatherCommand { get; }
 
         public WeatherPageViewModels()
         {

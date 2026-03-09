@@ -18,9 +18,9 @@
 
             // Limits (desktop only: Windows)
             window.MaximumWidth = 540;
-            window.MaximumHeight = 1200;
+            window.MaximumHeight = 1100;
             window.MinimumWidth = 540;
-            window.MinimumHeight = 1200;
+            window.MinimumHeight = 1100;
 #endif
             return window;
         }

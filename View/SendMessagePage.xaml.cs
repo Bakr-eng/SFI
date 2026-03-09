@@ -97,12 +97,10 @@ public partial class SendMessagePage : ContentPage
         if (_perosn.Roll == "Elev")
         {
             messages = await _meddelandeRepo.GetMessagesForStudent(_perosn.Id, _perosn.KlassId.Value);
-           // MessagesList.ItemsSource = messages;
         }
         else
         {
              messages = await _meddelandeRepo.GetMessagesForTeacher(_perosn.Id, _perosn.KlassId.Value);
-          //  MessagesList.ItemsSource = messages;
         }
 
         var perosnRepo = new PersonRepository();
