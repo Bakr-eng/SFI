@@ -9,7 +9,8 @@ namespace SFI.Models
 {
     public class RecipientModels 
     {
-        // Det finns bara för UI, int för databasen
+        // För att visa alla motagare 
+        // Det finns bara för UI, int för databasen 
         public ObjectId Id { get; set; }
         public string Name { get; set; }
         public string Typ { get; set; }

@@ -37,4 +37,26 @@ public partial class LevelPage : ContentPage
 		await Navigation.PopAsync();
 
     }
+
+    private void OnSliderValueChanged(object sender, ValueChangedEventArgs e)
+    {
+        var slider = (Slider)sender;
+		double value = e.NewValue;
+
+		Color color;
+		if (value < 50)
+		{
+			// Röd till Gul
+            double t = value / 50;
+            color = Color.FromRgb(255, (int)(255 * t), 0);
+        }
+		else
+		{
+            // Gul till Grön
+            double t = (value - 50) / 50;
+            color = Color.FromRgb((int)(255 * (1 - t)), 255, 0);
+        }
+
+        slider.MinimumTrackColor = color;
+    }
 }

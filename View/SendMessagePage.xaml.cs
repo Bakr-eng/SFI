@@ -124,6 +124,7 @@ public partial class SendMessagePage : ContentPage
 
         //MessagesList.ItemsSource = messages;
 
+
         // Med facade skriver vi bara 
         var message = await _messageService.GetMessagesForUser(_perosn);
         MessagesList.ItemsSource = message;

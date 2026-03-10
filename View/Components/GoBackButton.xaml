@@ -7,7 +7,7 @@
         <Button Text="Tillbaka"
             WidthRequest="90"
             HeightRequest="40"
-            BackgroundColor="DarkViolet"
+            BackgroundColor="OliveDrab"
             HorizontalOptions="Start"
             VerticalOptions="Start"
             Margin="0,20,10,0"

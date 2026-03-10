@@ -18,11 +18,8 @@ public partial class ShowStudentInfoPage : ContentPage
         LoadStudentInfo();
       
     }
-
-
     private async Task LoadStudentInfo()
     {
-
         NamnLabel.Text = $"Namn: {_elev.Name}";
         EmailLabel.Text = $"E-post: {_elev.Email}";
         LösenordLabel.Text = $"Lösenord: {_elev.Lösenord}";
