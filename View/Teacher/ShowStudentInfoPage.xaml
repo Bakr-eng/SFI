@@ -31,12 +31,43 @@
 
         <Label x:Name="NamnLabel" Text="Namn:" FontAttributes="Bold" />
 
-        <Label  x:Name="EmailLabel" Text="Email:" FontAttributes="Bold" Margin="0,10,0,0" />
+        <Label  x:Name="EmailLabel" Text="Email:" FontAttributes="Bold" Margin="0,20,0,0" />
 
-        <Label x:Name="KlassIdLabel" Text="KlassId:" FontAttributes="Bold" Margin="0,10,0,0" />
+        <Label x:Name="KlassIdLabel" Text="KlassId:" FontAttributes="Bold" Margin="0,20,0,0" />
 
-        <Label  x:Name="LösenordLabel"  Text="Lösenord:" FontAttributes="Bold"  Margin="0,10,0,0" />
-      
+        <Grid
+            ColumnDefinitions="*,Auto">
+            <Label  x:Name="LösenordLabel"  Text="Lösenord:" FontAttributes="Bold" Margin="0,20,0,0" Grid.Column="0" />
+            <Button 
+                x:Name="ChangePassword" 
+                Text="ändra lösenord"  
+                Grid.Column="1" 
+                Margin="0,10,0,0"
+                BackgroundColor="DarkGrey"
+                WidthRequest="130"
+                Clicked="OnChangePasswordClicked"/>
+
+        </Grid>
+
+        <VerticalStackLayout x:Name="PasswordChangePanel"
+                             Spacing="10"
+                             Margin="0,10,0,0"
+                             IsVisible="False">
+            <Entry x:Name="NewPasswordEntry"
+                Placeholder="Nytt lösenord"
+            />
+
+            <Entry x:Name="RepeatPasswordEntry"
+                Placeholder="Upprepa lösenord"
+            />
+
+            <Button
+                Text="Spara"
+                BackgroundColor="GreenYellow"
+                Clicked="OnSavePasswordClicked"/>
+
+        </VerticalStackLayout>
+
 
         <Button
             Text="Nivåer"

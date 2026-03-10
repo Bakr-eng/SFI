@@ -4,11 +4,11 @@
              x:Class="SFI.MainPage">
 
     <ScrollView>
-            <VerticalStackLayout BackgroundColor="LightSlateGray" Padding="30" Spacing="25">
+            <VerticalStackLayout BackgroundColor="LightSalmon" Padding="50" Spacing="15">
 
                 <Label
                 Text="VälKommen till SFI" 
-                TextColor="BurlyWood"
+                TextColor="DarkBlue"
                 FontSize="20"
                 HorizontalTextAlignment="Center"
                 VerticalTextAlignment="Center"
@@ -36,12 +36,13 @@
                 Text="loga in"
                 CornerRadius="25"
                 BackgroundColor="LightGreen"
-                Margin="70,20"
+                Margin="70,10"
                 Clicked="OnLogInClicked"
                 />
-                
-                
 
-            </VerticalStackLayout>
+            <Image
+                Source="svenska.jpg"/>
+
+        </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
