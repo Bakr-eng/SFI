@@ -11,7 +11,6 @@ namespace SFI.Services
     internal class MessageService
     {
         // Singleton Pattern
-
         private static MessageService _instance;
         public static MessageService Instance
         {
@@ -36,9 +35,12 @@ namespace SFI.Services
 
 
         // Facade Pattern
-        // Denna metod döljer all logik för att hämta meddelanden,
-        // fylla i avsändarens namn och hantera roller.
+        // Istället för att varje sida själv ska hämta meddelanden, kolla om det är 
+        // elev/lärare, hämta avsändarens namn och prata direkt med databasen,
+        // så gör MessageService allt detta på ett ställe.
 
+        // Klassen är också en Singleton, vilket betyder att det bara finns en instans
+        // av MessageService i hela appen.
         public async Task<List<Meddelande>> GetMessagesForUser(Person user)
         {
             List<Meddelande> messages;

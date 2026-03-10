@@ -14,7 +14,9 @@ namespace SFI.Data
 
         public MongoDb()
         {
+
             const string connectionString = "mongodb+srv://sfiuser:bakr123@cluster.my90zyb.mongodb.net/?appName=Cluster";
+
             var client = new MongoClient(connectionString);
 
             _database = client.GetDatabase("SFI");

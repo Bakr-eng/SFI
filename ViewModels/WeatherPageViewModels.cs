@@ -45,6 +45,11 @@ namespace SFI.ViewModels
 
         private async Task LoadWeather()
         {
+            if (string.IsNullOrWhiteSpace(City))
+            {
+                WeatherText = "skriv en stad först.";
+                return;
+            }
             var weather = await WeatherRepository.GetWeatherAsync(City);
 
             if (weather != null)
