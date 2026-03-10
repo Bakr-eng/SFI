@@ -13,6 +13,7 @@ public partial class LevelPage : ContentPage
 		InitializeComponent();
 		_nivåer = nivåer;
 
+
 		_nivåer.UppdateringsDag = _nivåer.UppdateringsDag.ToLocalTime();   // för att spara svensk tid
         BindingContext = _nivåer; 
 

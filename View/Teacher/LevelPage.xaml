@@ -6,7 +6,7 @@
              xmlns:components="clr-namespace:SFI.View.Components">
     <VerticalStackLayout>
         
-        <Label Text="Uppdatera nivåer" FontSize="30" HorizontalOptions="Center" />
+        <Label Text="Nivå" FontSize="30" HorizontalOptions="Center" />
 
         <components:GoBackButton/>
 
