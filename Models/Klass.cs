@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SFI.Models
 {
-    internal class Klass
+    public class Klass
     {
         [BsonId]
         public ObjectId Id { get; set; }

@@ -23,18 +23,20 @@
             Text="Hantera elever"
             WidthRequest="500"
             HeightRequest="40"
-            BackgroundColor="DarkGray"
+            BackgroundColor="DarkCyan"
             HorizontalOptions="Center"
             VerticalOptions="Center"
             Margin="0,15,0,0"
             TextColor="Black"
             Clicked="OnManageStudentsClicked" />
 
+      
+
         <Button
             Text="Skicka Meddelande"
             WidthRequest="500"
             HeightRequest="40"
-            BackgroundColor="DarkGray"
+            BackgroundColor="DarkCyan"
             HorizontalOptions="Center"
             VerticalOptions="Center"
             Margin="0,15,0,0"
