@@ -19,18 +19,12 @@ namespace SFI.Repositories
             _collection = db.Klasser;
         }
 
-        public async Task Add(Klass klass)
-        {
+        public async Task Add(Klass klass) =>
             await _collection.InsertOneAsync(klass);
-        }
-        public async Task Update(Klass klass)
-        {
+        public async Task Update(Klass klass) =>
             await _collection.ReplaceOneAsync(k => k.Id == klass.Id, klass);
-        }
-        public async Task Delete(ObjectId id)
-        {
+        public async Task Delete(ObjectId id) =>
             await _collection.DeleteOneAsync(k => k.Id == id);
-        }
 
         public Task<List<Klass>> GetAll() => // behöver inte skriva return eftersom det är en expression-bodied member
             _collection.Find(_ => true).ToListAsync();

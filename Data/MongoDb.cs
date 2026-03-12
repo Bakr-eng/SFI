@@ -33,5 +33,8 @@ namespace SFI.Data
 
         public IMongoCollection<Nivåer> Nivåer =>
             _database.GetCollection<Nivåer>("Nivåer");
+
+        public IMongoCollection<Attendance> Attendance =>
+            _database.GetCollection<Attendance>("Närvarande");
     }
 }
