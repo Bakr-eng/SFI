@@ -45,13 +45,13 @@ namespace SFI.Repositories
 
         public async Task Add(Attendance attendance)
         {
-            attendance.Datum = attendance.Datum.Date;
+            attendance.Datum = attendance.Datum.Date.ToLocalTime();
             await _collection.InsertOneAsync(attendance);
         }
 
         public async Task Update(Attendance attendance)
         {
-            attendance.Datum = attendance.Datum.Date;
+            attendance.Datum = attendance.Datum.Date.ToLocalTime();
 
             var filter = Builders<Attendance>.Filter.Eq(a => a.Id, attendance.Id);
             await _collection.ReplaceOneAsync(filter, attendance);
