@@ -83,5 +83,17 @@
             Clicked="OnLevelClicked" />
 
 
+        <Button
+            Text="Närvarande"
+            WidthRequest="160"
+            HeightRequest="40"
+            HorizontalOptions="Start"
+            VerticalOptions="Start"
+            Margin="0,20,10,0"
+            TextColor="White"
+            BackgroundColor="DarkGreen"
+            Clicked="OnAttendanceClicked"/>
+
+
     </VerticalStackLayout>
 </ContentPage>

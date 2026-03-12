@@ -2,6 +2,7 @@ using MongoDB.Driver;
 using SFI.Models;
 using SFI.Repositories;
 using SFI.View.Teacher;
+using System.Threading.Tasks;
 
 namespace SFI.View.Teacher;
 
@@ -103,5 +104,10 @@ public partial class ShowStudentInfoPage : ContentPage
 
         await LoadStudentInfo(); // för att visa direkt ändringar
 
+    }
+
+    private async void OnAttendanceClicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new AttendancePage(_elev));
     }
 }

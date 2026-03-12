@@ -4,7 +4,7 @@
              x:Class="SFI.MainPage">
 
     <ScrollView>
-            <VerticalStackLayout BackgroundColor="SkyBlue" Padding="50" Spacing="15">
+            <VerticalStackLayout BackgroundColor="Gray" Padding="50" Spacing="15">
 
                 <Label
                 Text="VälKommen till SFI" 

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SFI.View.AttendancePage"
+             Title="Närvaro" BackgroundColor="Gray"
+             xmlns:components="clr-namespace:SFI.View.Components">
+
+
+    <ScrollView>
+        <VerticalStackLayout Padding="10" Spacing="10">
+            <Grid ColumnDefinitions="*,Auto,*,Auto,*" Padding="0,10">
+
+                <components:GoBackButton Grid.Column="0"/>
+
+                <ImageButton
+                    Source="leftarrow.png"
+                    WidthRequest="30"
+                    HeightRequest="30"
+                    Grid.Column="1"
+                    BackgroundColor="Transparent"
+                    Clicked="OnPrevYearClicked"/>
+
+                <Label
+                    x:Name="YearLabel"
+                    Grid.Column="2"
+                    FontSize="24"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    FontAttributes="Bold"/>
+
+                <ImageButton
+                    Source="rightarrows.png"
+                    WidthRequest="30"
+                    HeightRequest="30"
+                    Grid.Column="3"
+                    BackgroundColor="Transparent"
+                    Clicked="OnNextYearClicked"/>
+
+                <components:LogoutButton Grid.Column="4"/>
+
+            </Grid>
+
+
+            <Grid
+            ColumnDefinitions="*,*,*,*,*,*,*,*,*,*,*,*"
+            Padding="10"
+            RowSpacing="10"
+            ColumnSpacing="10">
+
+            <!-- Januari -->
+            <VerticalStackLayout 
+                Grid.Column="0">
+                <Label Text="Jan" HorizontalOptions="Center" FontAttributes="Bold"/>
+                <VerticalStackLayout x:Name="JanDays" Spacing="4"/>
+            </VerticalStackLayout>
+
+
+            <!-- Februari -->
+            <VerticalStackLayout
+                Grid.Column="1">
+                <Label Text="Feb" HorizontalOptions="Center" FontAttributes="Bold"/>
+                <VerticalStackLayout x:Name="FebDays" Spacing="4"/>
+            </VerticalStackLayout>
+
+            <!-- Mars -->
+            <VerticalStackLayout 
+                Grid.Column="2">
+                <Label Text="Mar" HorizontalOptions="Center" FontAttributes="Bold"/>
+                <VerticalStackLayout x:Name="MarDays" Spacing="4"/>
+            </VerticalStackLayout>
+
+            <!-- April -->
+            <VerticalStackLayout 
+                Grid.Column="3">
+                <Label Text="Apr" HorizontalOptions="Center" FontAttributes="Bold"/>
+                <VerticalStackLayout x:Name="AprDays" Spacing="4"/>
+            </VerticalStackLayout>
+
+            <!-- Maj -->
+            <VerticalStackLayout 
+                Grid.Column="4">
+                <Label Text="Maj" HorizontalOptions="Center" FontAttributes="Bold"/>
+                <VerticalStackLayout x:Name="MajDays" Spacing="4"/>
+            </VerticalStackLayout>
+
+            <!-- Juni -->
+            <VerticalStackLayout 
+                Grid.Column="5">
+                <Label Text="Jun" HorizontalOptions="Center" FontAttributes="Bold"/>
+                <VerticalStackLayout x:Name="JunDays" Spacing="4"/>
+            </VerticalStackLayout>
+
+            <!-- Juli -->
+            <VerticalStackLayout 
+                Grid.Column="6">
+                <Label Text="Jul" HorizontalOptions="Center" FontAttributes="Bold"/>
+                <VerticalStackLayout x:Name="JulDays" Spacing="4"/>
+            </VerticalStackLayout>
+
+            <!-- Augusti -->
+            <VerticalStackLayout 
+                Grid.Column="7">
+                <Label Text="Aug" HorizontalOptions="Center" FontAttributes="Bold"/>
+                <VerticalStackLayout x:Name="AugDays" Spacing="4"/>
+            </VerticalStackLayout>
+
+            <!-- September -->
+            <VerticalStackLayout
+                Grid.Column="8">
+                <Label Text="Sep" HorizontalOptions="Center" FontAttributes="Bold"/>
+                <VerticalStackLayout x:Name="SepDays" Spacing="4"/>
+            </VerticalStackLayout>
+
+            <!-- Oktober -->
+            <VerticalStackLayout 
+                Grid.Column="9">
+                <Label Text="Okt" HorizontalOptions="Center" FontAttributes="Bold"/>
+                <VerticalStackLayout x:Name="OktDays" Spacing="4"/>
+            </VerticalStackLayout>
+
+            <!-- November -->
+            <VerticalStackLayout 
+                Grid.Column="10">
+                <Label Text="Nov" HorizontalOptions="Center" FontAttributes="Bold"/>
+                <VerticalStackLayout x:Name="NovDays" Spacing="4"/>
+            </VerticalStackLayout>
+
+            <!-- December -->
+            <VerticalStackLayout 
+                Grid.Column="11">
+                <Label Text="Dec" HorizontalOptions="Center" FontAttributes="Bold"/>
+                <VerticalStackLayout x:Name="DecDays" Spacing="4"/>
+            </VerticalStackLayout>
+        </Grid>
+        
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

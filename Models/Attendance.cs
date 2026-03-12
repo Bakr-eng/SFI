@@ -13,9 +13,10 @@ namespace SFI.Models
         [BsonId]
         public ObjectId Id { get; set; }
 
-
+        [BsonRepresentation(BsonType.ObjectId)]
         [BsonElement("studentId")]
         public ObjectId StudentId { get; set; }
+
 
         [BsonElement("datum")]
         public DateTime Datum { get; set; }

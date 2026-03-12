@@ -12,27 +12,50 @@ namespace SFI.Repositories
     internal class AttendanceRepository : IAttendanceRepository
     {
         private readonly IMongoCollection<Attendance> _collection;
+
         public AttendanceRepository()
         {
             var db = new Data.MongoDb();
             _collection = db.Attendance;
         }
+
         public async Task<Attendance> GetByDate(ObjectId studentId, DateTime date)
         {
+            var start = date.Date;
+            var end = start.AddDays(1);
+
             return await _collection.Find(a =>
-            a.StudentId == studentId &&
-            a.Datum.Date == date.Date
+                a.StudentId == studentId &&
+                a.Datum >= start &&
+                a.Datum < end
             ).FirstOrDefaultAsync();
         }
+
         public async Task<List<Attendance>> GetByStudentId(ObjectId studentId)
         {
-            return await _collection.Find(a => a.StudentId == studentId)
-                 .SortBy(a => a.Datum)
+            var list = await _collection.Find(a => a.StudentId == studentId)
+                .SortBy(a => a.Datum)
                 .ToListAsync();
+
+            foreach (var a in list)
+                a.Datum = a.Datum.Date;
+
+            return list;
         }
-        public async Task Add(Attendance attendance) =>
+
+        public async Task Add(Attendance attendance)
+        {
+            attendance.Datum = attendance.Datum.Date;
             await _collection.InsertOneAsync(attendance);
-        public async Task Update(Attendance attendance) =>
-            await _collection.ReplaceOneAsync(a => a.Id == attendance.Id, attendance);
+        }
+
+        public async Task Update(Attendance attendance)
+        {
+            attendance.Datum = attendance.Datum.Date;
+
+            var filter = Builders<Attendance>.Filter.Eq(a => a.Id, attendance.Id);
+            await _collection.ReplaceOneAsync(filter, attendance);
+        }
+
     }
 }

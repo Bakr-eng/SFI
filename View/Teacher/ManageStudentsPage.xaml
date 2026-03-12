@@ -15,6 +15,8 @@
             Text="Lägg till elev"
             Clicked="OnAddStudentClicked"
             Margin="0,10" />
+        
+      
 
 
         <CollectionView x:Name="StudentsList"
