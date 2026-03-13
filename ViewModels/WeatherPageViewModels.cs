@@ -1,5 +1,7 @@
-﻿using SFI.Models;
+﻿using Microsoft.Maui.Controls;
+using SFI.Models;
 using SFI.Repositories;
+using SFI.View;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -63,12 +65,24 @@ namespace SFI.ViewModels
                     WeatherText = "Kunde inte hämta väder för din plats.";
                     return;
                 }
+
+                var condition = GetWeatherCondition(weather);
+
                 WeatherText =
                     $"Din plats\n" +
                     $"{GetWeatherCondition(weather)}\n" +
                     $"Temp: {weather.temp}°C\n" +
                     $"Vind: {weather.wind_speed} m/s\n" +
                     $"Fuktighet: {weather.humidity}%";
+
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    if (Application.Current.MainPage is NavigationPage nav &&
+                        nav.CurrentPage is WeatherPage page)
+                    {
+                        page.SetBackground(condition);
+                    }
+                });
             }
             catch (FeatureNotSupportedException)
             {
@@ -102,6 +116,15 @@ namespace SFI.ViewModels
                     $"Temp: {weather.temp}°C\n" +
                     $"Vind: {weather.wind_speed} m/s\n" +
                     $"Fuktighet: {weather.humidity}%";
+
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    if (Application.Current.MainPage is NavigationPage nav &&
+                        nav.CurrentPage is WeatherPage page)
+                    {
+                        page.SetBackground(condition);
+                    }
+                });
             }
             else
             {
@@ -111,15 +134,15 @@ namespace SFI.ViewModels
         private string GetWeatherCondition(Weather weather)
         {
             if (weather.temp <= 0 && weather.cloud_pct > 50)
-                return "Snöar / Risk för snö ❄️";
+                return "Snö ❄️";
 
             if (weather.cloud_pct > 70 && weather.humidity > 70)
-                return "Regn / Risk för regn 🌧️ ";
+                return "Regn 🌧️";
 
             if (weather.cloud_pct> 50)
-                return "Molnigt ☁️ ";
+                return "Moln ☁️";
 
-            return "Klart väder ☀️";
+            return "Sol ☀️";
         }
 
 

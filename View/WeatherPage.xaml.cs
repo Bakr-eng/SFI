@@ -1,4 +1,4 @@
-using SFI.ViewModels;
+﻿using SFI.ViewModels;
 
 namespace SFI.View;
 
@@ -10,13 +10,26 @@ public partial class WeatherPage : ContentPage
 		BindingContext = new WeatherPageViewModels();
 	}
 
+    public void SetBackground(string condition)
+    {
+        string image = condition switch
+        {
+            "Snö ❄️" => "snowday.jpg",
+            "Regn 🌧️" => "rainday.jpg",
+            "Moln ☁️" => "cloudyday.jpg",
+            _ => "sunnyday.jpg"
+        };
+
+        this.BackgroundImageSource = image;
+    }
+
     protected override async void OnAppearing()
     {
         base.OnAppearing();
 
         if (BindingContext is WeatherPageViewModels vm)
         {
-            await vm.LoadWeatherAuto();   // H�mta v�dret direkt
+            await vm.LoadWeatherAuto();   // Hämta vädret direkt
         }
     }
 }

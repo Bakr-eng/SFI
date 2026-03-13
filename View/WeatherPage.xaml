@@ -3,24 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SFI.View.WeatherPage"
              Title="WeatherPage">
-    <VerticalStackLayout>
+    <VerticalStackLayout BackgroundColor="Transparent" Padding="20">
 
-       
+        <Entry Placeholder="Ange stad" Text="{Binding City}" />
 
-        <Entry
-            Placeholder="Ange stad"
-            Text="{Binding City}" />
+        <Button Text="Hämta Väder" Command="{Binding LoadWeatherCommand}" />
 
-        <Button
-            Text="Hämta Väder"
-            Command="{Binding LoadWeatherCommand}" />
-
-
-        <Label
-            Text="{Binding WeatherText}"
-            VerticalOptions="Center"
-            HorizontalOptions="Start"
-            Margin="10,30,0,0"    />
+        <Label Text="{Binding WeatherText}"
+               FontSize="18"
+               TextColor="White"
+               Margin="0,30,0,0"/>
 
     </VerticalStackLayout>
 </ContentPage>
