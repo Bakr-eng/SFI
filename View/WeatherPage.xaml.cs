@@ -9,20 +9,6 @@ public partial class WeatherPage : ContentPage
 		InitializeComponent();
 		BindingContext = new WeatherPageViewModels();
 	}
-
-    public void SetBackground(string condition)
-    {
-        string image = condition switch
-        {
-            "Snö ❄️" => "snowday.jpg",
-            "Regn 🌧️" => "rainday.jpg",
-            "Moln ☁️" => "cloudyday.jpg",
-            _ => "sunnyday.jpg"
-        };
-
-        this.BackgroundImageSource = image;
-    }
-
     protected override async void OnAppearing()
     {
         base.OnAppearing();

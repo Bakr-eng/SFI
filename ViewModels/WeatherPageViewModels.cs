@@ -20,22 +20,21 @@ namespace SFI.ViewModels
         public string City
         {
             get => city;
-            set
-            {
-                city = value;
-                OnPropertyChanged();
-            }
+            set { city = value; OnPropertyChanged(); }
         }
 
         private string weatherText;
         public string WeatherText
         {
             get => weatherText;
-            set
-            {
-                weatherText = value;
-                OnPropertyChanged();
-            }
+            set { weatherText = value; OnPropertyChanged(); }
+        }
+
+        private string backgroundImage;
+        public string BackgroundImage
+        {
+            get => backgroundImage;
+            set { backgroundImage = value; OnPropertyChanged(); }
         }
 
         public ICommand LoadWeatherCommand { get; }
@@ -62,11 +61,12 @@ namespace SFI.ViewModels
                  );
                 if (weather == null)
                 {
-                    WeatherText = "Kunde inte hämta väder för din plats.";
+                    WeatherText = "Kunde inte hämta väder.";
                     return;
                 }
-
                 var condition = GetWeatherCondition(weather);
+                SetBackground(condition);
+
 
                 WeatherText =
                     $"Din plats\n" +
@@ -74,15 +74,6 @@ namespace SFI.ViewModels
                     $"Temp: {weather.temp}°C\n" +
                     $"Vind: {weather.wind_speed} m/s\n" +
                     $"Fuktighet: {weather.humidity}%";
-
-                MainThread.BeginInvokeOnMainThread(() =>
-                {
-                    if (Application.Current.MainPage is NavigationPage nav &&
-                        nav.CurrentPage is WeatherPage page)
-                    {
-                        page.SetBackground(condition);
-                    }
-                });
             }
             catch (FeatureNotSupportedException)
             {
@@ -106,48 +97,50 @@ namespace SFI.ViewModels
             }
             var weather = await WeatherRepository.GetWeatherAsync(City);
 
-            if (weather != null)
-            {
-                var condition = GetWeatherCondition(weather);
-
-                WeatherText =
-                    $"{City}\n" +
-                    $"{condition}\n"+
-                    $"Temp: {weather.temp}°C\n" +
-                    $"Vind: {weather.wind_speed} m/s\n" +
-                    $"Fuktighet: {weather.humidity}%";
-
-                MainThread.BeginInvokeOnMainThread(() =>
-                {
-                    if (Application.Current.MainPage is NavigationPage nav &&
-                        nav.CurrentPage is WeatherPage page)
-                    {
-                        page.SetBackground(condition);
-                    }
-                });
-            }
-            else
+            if (weather == null)
             {
                 WeatherText = "Kunde inte hämta.";
+                return;
             }
+
+            var condition = GetWeatherCondition(weather);
+            SetBackground(condition);
+
+            WeatherText =
+                $"{City}\n" +
+                $"{condition}\n" +
+                $"Temp: {weather.temp}°C\n" +
+                $"Vind: {weather.wind_speed} m/s\n" +
+                $"Fuktighet: {weather.humidity}%";
         }
         private string GetWeatherCondition(Weather weather)
         {
             if (weather.temp <= 0 && weather.cloud_pct > 50)
-                return "Snö ❄️";
+                return "snow";
 
             if (weather.cloud_pct > 70 && weather.humidity > 70)
-                return "Regn 🌧️";
+                return "rain";
 
-            if (weather.cloud_pct> 50)
-                return "Moln ☁️";
+            if (weather.cloud_pct > 50)
+                return "cloud";
 
-            return "Sol ☀️";
+            return "sun";
+        }
+
+        private void SetBackground(string condition)
+        {
+            BackgroundImage = condition switch
+            {
+                "snow" => "snowday.jpg",
+                "rain" => "rainday.jpg",
+                "cloud" => "cloudyday.jpg",
+                _ => "sunnyday.jpg"
+            };
         }
 
 
-        public event PropertyChangedEventHandler PropertyChanged;
 
+        public event PropertyChangedEventHandler PropertyChanged;
         void OnPropertyChanged([CallerMemberName] string name = null)
             => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
     }
