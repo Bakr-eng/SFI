@@ -7,28 +7,32 @@
     <ScrollView>
         <VerticalStackLayout>
 
-                <Grid ColumnDefinitions="*, Auto">
-                <components:GoBackButton  Grid.Column="0"/>
+            <Grid ColumnDefinitions="*, Auto">
+            <components:GoBackButton  Grid.Column="0"/>
             </Grid>
 
     
-                <Label x:Name="RecipientLabel"
-               Text="Mottagare"
-               FontSize="18"
-               Margin="0,0,0,20" />
+            <Label 
+                x:Name="RecipientLabel"
+                Text="Mottagare"
+                FontSize="18"
+                Margin="0,0,0,20" />
 
-                <Picker x:Name="RecipientPicker"
+            <Picker 
+                x:Name="RecipientPicker"
                 Title="Välj mottagare"
                 IsVisible="False"
                 ItemDisplayBinding="{Binding Name}" />
 
-                <Editor x:Name="MessageEntry"
+            <Editor 
+                x:Name="MessageEntry"
                 Placeholder="Skriv ditt meddelande här..."
                 AutoSize="TextChanges"
                 HeightRequest="170"
                 Margin="0,20,0,0" />
 
-                <Button Text="Skicka"
+            <Button 
+                Text="Skicka"
                 Clicked="OnSendClicked"
                 BackgroundColor="#4CAF50"
                 TextColor="White"
@@ -36,52 +40,68 @@
                 HeightRequest="50"
                 Margin="0,20,0,0" />
 
-                <Button
-                Text="Mina Meddelande"
-                WidthRequest="170"
-                HeightRequest="40"
-                BackgroundColor="DarkCyan"
-                HorizontalOptions="Center"
-                VerticalOptions="Center"
-                Margin="0,20,340,0"
-                TextColor="Black"
-                Clicked="ONSeeMessagesClicked" />
 
-                <Label Text="Dina meddelanden"
-                FontSize="15"
-                Margin="0,0,0,10" />
+                <Button
+                    Text="Mina Meddelande"
+                    WidthRequest="170"
+                    HeightRequest="40"
+                    BackgroundColor="DarkCyan"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Margin="0,20,340,0"
+                    TextColor="Black"
+                    Clicked="ONSeeMessagesClicked" />
+
+
+
+            <Label Text="Dina meddelanden"
+            FontSize="15"
+            Margin="0,0,0,10" />
 
     
-                <Grid ColumnDefinitions="Auto, *">
+            <Grid ColumnDefinitions="Auto, *">
                 <CollectionView x:Name="MessagesList">
                     <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <Frame 
-                                BorderColor="Red"
-                                BackgroundColor="Gray"
-                                Padding="10"
-                                Margin="0,5,0,0"
-                                HorizontalOptions="Start"
-                                MaximumWidthRequest="280"
-                                CornerRadius="10">
 
-    
+                        <DataTemplate>
+                            <Grid ColumnDefinitions="Auto, *">
+
+                                <!-- Själva meddelande-rutan -->
+                                <Frame 
+            Grid.Column="0"
+            BorderColor="Red"
+            BackgroundColor="Gray"
+            Padding="10"
+            Margin="0,5,0,0"
+            HorizontalOptions="Start"
+            MaximumWidthRequest="280"
+            CornerRadius="10">
+
+                                    <!-- Här lägger du TapGestureRecognizer -->
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnMessageTapped" />
+                                    </Frame.GestureRecognizers>
+
                                     <VerticalStackLayout>
-                                    <Label
-                                        Text="{Binding AvsändareNamn}"
-                                        FontAttributes="Bold"
-                                        FontSize="14"
-                                        TextColor="Yellow" />
-                                    <Label 
-                                        Text="{Binding Text}" 
-                                        FontSize="16" />
-                                    <Label 
-                                        Text="{Binding Tid}" 
-                                        FontSize="12" 
-                                        TextColor="Black" />
-                                </VerticalStackLayout>
-                            </Frame>
+                                        <Label Text="{Binding AvsändareNamn}"
+                       FontAttributes="Bold"
+                       FontSize="14"
+                       TextColor="Yellow" />
+
+                                        <Label Text="{Binding Text}"
+                       FontSize="16" />
+
+                                        <Label Text="{Binding Tid}"
+                       FontSize="12"
+                       TextColor="Black" />
+                                    </VerticalStackLayout>
+                                </Frame>
+
+                             
+                            </Grid>
                         </DataTemplate>
+
+
                     </CollectionView.ItemTemplate>
                 </CollectionView>
             </Grid>

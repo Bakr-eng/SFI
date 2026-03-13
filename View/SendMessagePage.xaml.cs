@@ -130,4 +130,34 @@ public partial class SendMessagePage : ContentPage
         MessagesList.ItemsSource = message;
 
     }
+
+
+
+    private async void OnMessageTapped(object sender, TappedEventArgs e)
+    {
+        var frame = (Frame)sender;
+        var message = (Meddelande)frame.BindingContext;
+
+        string action = await DisplayActionSheet(
+            "Meddelande",
+            "Avbryt",
+            null,
+            "Ta bort"
+            );
+
+
+
+        if (action == "Ta bort")
+        {
+            bool confirm = await DisplayAlert("Radera", "Vill du radera detta meddelande?", "Ja", "Nej");
+            if (!confirm)
+                return;
+
+            await _meddelandeRepo.Delete(message.Id);
+
+            var messages = await _messageService.GetMessagesForUser(_perosn);
+            MessagesList.ItemsSource = messages;
+
+        }
+    }
 }

@@ -23,9 +23,9 @@ namespace SFI.Repositories
             }
         }
 
-        private readonly IMongoCollection<Meddelande> _collection; // bytade till private
+        private readonly IMongoCollection<Meddelande> _collection; 
 
-        private MeddelandeRepository()
+        private MeddelandeRepository() // bytade till private
         {
             var db = new MongoDb();
             _collection = db.Meddelanden;
