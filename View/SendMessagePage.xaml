@@ -53,7 +53,6 @@
                     Clicked="ONSeeMessagesClicked" />
 
 
-
             <Label Text="Dina meddelanden"
             FontSize="15"
             Margin="0,0,0,10" />
@@ -66,46 +65,40 @@
                         <DataTemplate>
                             <Grid ColumnDefinitions="Auto, *">
 
-                                <!-- Själva meddelande-rutan -->
                                 <Frame 
-            Grid.Column="0"
-            BorderColor="Red"
-            BackgroundColor="Gray"
-            Padding="10"
-            Margin="0,5,0,0"
-            HorizontalOptions="Start"
-            MaximumWidthRequest="280"
-            CornerRadius="10">
+                                    Grid.Column="0"
+                                    BorderColor="Red"
+                                    BackgroundColor="Gray"
+                                    Padding="10"
+                                    Margin="0,5,0,0"
+                                    HorizontalOptions="Start"
+                                    MaximumWidthRequest="280"
+                                    CornerRadius="10">
 
-                                    <!-- Här lägger du TapGestureRecognizer -->
                                     <Frame.GestureRecognizers>
                                         <TapGestureRecognizer Tapped="OnMessageTapped" />
                                     </Frame.GestureRecognizers>
 
                                     <VerticalStackLayout>
-                                        <Label Text="{Binding AvsändareNamn}"
-                       FontAttributes="Bold"
-                       FontSize="14"
-                       TextColor="Yellow" />
+                                        <Label 
+                                            Text="{Binding AvsändareNamn}"
+                                            FontAttributes="Bold"
+                                            FontSize="14"
+                                            TextColor="Yellow" />
 
                                         <Label Text="{Binding Text}"
-                       FontSize="16" />
+                                            FontSize="16" />
 
                                         <Label Text="{Binding Tid}"
-                       FontSize="12"
-                       TextColor="Black" />
+                                            FontSize="12"
+                                            TextColor="Black" />
                                     </VerticalStackLayout>
                                 </Frame>
-
-                             
                             </Grid>
                         </DataTemplate>
-
-
                     </CollectionView.ItemTemplate>
                 </CollectionView>
             </Grid>
-
             </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

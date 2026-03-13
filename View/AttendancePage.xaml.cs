@@ -24,68 +24,95 @@ public partial class AttendancePage : ContentPage
 
     private async void LoadYear(int year)
     {
-        var attendanceList = await _attendanceRepo.GetByStudentId(_elev.Id);
+        try
+        {
+            var attendanceList = await _attendanceRepo.GetByStudentId(_elev.Id);
 
-        var attendanceDict = attendanceList
-            .GroupBy(a => a.Datum.Date)
-            .ToDictionary(g => g.Key, g => g.First().Status);
+            var attendanceDict = attendanceList
+                .GroupBy(a => a.Datum.Date)
+                .ToDictionary(g => g.Key, g => g.First().Status);
 
-        // Fill månader
-        FillMonth(JanDays, 1, year, attendanceDict);
-        FillMonth(FebDays, 2, year, attendanceDict);
-        FillMonth(MarDays, 3, year, attendanceDict);
-        FillMonth(AprDays, 4, year, attendanceDict);
-        FillMonth(MajDays, 5, year, attendanceDict);
-        FillMonth(JunDays, 6, year, attendanceDict);
-        FillMonth(JulDays, 7, year, attendanceDict);
-        FillMonth(AugDays, 8, year, attendanceDict);
-        FillMonth(SepDays, 9, year, attendanceDict);
-        FillMonth(OktDays, 10, year, attendanceDict);
-        FillMonth(NovDays, 11, year, attendanceDict);
-        FillMonth(DecDays, 12, year, attendanceDict);
+            // Fill månader
+            FillMonth(JanDays, 1, year, attendanceDict);
+            FillMonth(FebDays, 2, year, attendanceDict);
+            FillMonth(MarDays, 3, year, attendanceDict);
+            FillMonth(AprDays, 4, year, attendanceDict);
+            FillMonth(MajDays, 5, year, attendanceDict);
+            FillMonth(JunDays, 6, year, attendanceDict);
+            FillMonth(JulDays, 7, year, attendanceDict);
+            FillMonth(AugDays, 8, year, attendanceDict);
+            FillMonth(SepDays, 9, year, attendanceDict);
+            FillMonth(OktDays, 10, year, attendanceDict);
+            FillMonth(NovDays, 11, year, attendanceDict);
+            FillMonth(DecDays, 12, year, attendanceDict);
+        }
+        catch (NullReferenceException)
+        {
+            await DisplayAlert("Fel", "Kunde inte läsa närvarodata. Något saknas.", "OK");
+        }
+        catch (FormatException)
+        {
+            await DisplayAlert("Fel", "Felaktigt datumformat i databasen.", "OK");
+        }
+        catch(Exception ex)
+        {
+            await DisplayAlert("Fel", $"Ett oväntat fel inträffade: {ex.Message}", "OK");
+        }
     }
 
 
     private void FillMonth(VerticalStackLayout layout, int month, int year, Dictionary<DateTime, int> attendanceDict)
     {
-        layout.Children.Clear();
-
-        int days = DateTime.DaysInMonth(year, month);
-
-        for (int day = 1; day <= days; day++)
+        try
         {
-            DateTime date = new DateTime(year, month, day);
+            layout.Children.Clear();
 
-            int status = attendanceDict.ContainsKey(date) ? attendanceDict[date] : -1;
+            int days = DateTime.DaysInMonth(year, month);
 
-            var border = new Border
+            for (int day = 1; day <= days; day++)
             {
-                WidthRequest = 28,
-                HeightRequest = 28,
-                StrokeThickness = 1,
-                Stroke = Colors.Black,
-                BackgroundColor = GetStatusColor(status),
-                StrokeShape = new RoundRectangle
-                {
-                    CornerRadius = new CornerRadius(4)
-                },
-                BindingContext = date,
-                Margin = new Thickness(0, 2),
-                Content = new Label
-                {
-                    Text = day.ToString(),
-                    FontSize = 12,
-                    HorizontalOptions = LayoutOptions.Center,
-                    VerticalOptions = LayoutOptions.Center,
-                    TextColor = Colors.Black
-                }
-            };
+                DateTime date = new DateTime(year, month, day);
 
-            var tap = new TapGestureRecognizer();
-            tap.Tapped += OnDayTapped;
-            border.GestureRecognizers.Add(tap);
+                int status = attendanceDict.ContainsKey(date) ? attendanceDict[date] : -1;
 
-            layout.Children.Add(border);
+                var border = new Border
+                {
+                    WidthRequest = 28,
+                    HeightRequest = 28,
+                    StrokeThickness = 1,
+                    Stroke = Colors.Black,
+                    BackgroundColor = GetStatusColor(status),
+                    StrokeShape = new RoundRectangle
+                    {
+                        CornerRadius = new CornerRadius(4)
+                    },
+                    BindingContext = date,
+                    Margin = new Thickness(0, 2),
+                    Content = new Label
+                    {
+                        Text = day.ToString(),
+                        FontSize = 12,
+                        HorizontalOptions = LayoutOptions.Center,
+                        VerticalOptions = LayoutOptions.Center,
+                        TextColor = Colors.Black
+                    }
+                };
+
+                var tap = new TapGestureRecognizer();
+                tap.Tapped += OnDayTapped;
+                border.GestureRecognizers.Add(tap);
+
+                layout.Children.Add(border);
+
+            }
+        }
+        catch (ArgumentOutOfRangeException)
+        {
+            DisplayAlert("Fel", "Datumet ligger utanför giltigt intervall.", "OK");
+        }
+        catch (Exception ex)
+        {
+            DisplayAlert("Fel", $"Ett oväntat fel inträffade: {ex.Message}", "OK");
         }
     }
 
@@ -93,47 +120,62 @@ public partial class AttendancePage : ContentPage
 
     private async void OnDayTapped(object sender, TappedEventArgs e)
     {
-        var border = (Border)sender;
-        var date = ((DateTime)border.BindingContext).Date;
-
-        string choice = await DisplayActionSheet(
-            $"{date:yyyy-MM-dd}",
-            "Avbryt",
-            null,
-            "Närvarande",
-            "Frånvarande",
-            "Sjuk"
-        );
-
-        int status = choice switch
+        try
         {
-            "Närvarande" => 2,
-            "Frånvarande" => 0,
-            "Sjuk" => 1,
-            _ => -1
-        };
+            var border = (Border)sender;
+            var date = ((DateTime)border.BindingContext).Date;
 
-        if (status == -1)
-            return;
+            string choice = await DisplayActionSheet(
+                $"{date:yyyy-MM-dd}",
+                "Avbryt",
+                null,
+                "Närvarande",
+                "Frånvarande",
+                "Sjuk"
+            );
 
-        var existing = await _attendanceRepo.GetByDate(_elev.Id, date);
-
-        if (existing == null)
-        {
-            await _attendanceRepo.Add(new Attendance
+            int status = choice switch
             {
-                StudentId = _elev.Id,
-                Datum = date,
-                Status = status
-            });
-        }
-        else
-        {
-            existing.Status = status;
-            await _attendanceRepo.Update(existing);
-        }
+                "Närvarande" => 2,
+                "Frånvarande" => 0,
+                "Sjuk" => 1,
+                _ => -1
+            };
 
-        border.BackgroundColor = GetStatusColor(status);
+            if (status == -1)
+                return;
+
+            var existing = await _attendanceRepo.GetByDate(_elev.Id, date);
+
+            if (existing == null)
+            {
+                await _attendanceRepo.Add(new Attendance
+                {
+                    StudentId = _elev.Id,
+                    Datum = date,
+                    Status = status
+                });
+            }
+            else
+            {
+                existing.Status = status;
+                await _attendanceRepo.Update(existing);
+            }
+
+            border.BackgroundColor = GetStatusColor(status);
+        }
+        catch (NullReferenceException)
+        {
+            await DisplayAlert("Fel", "Kunde inte läsa datumet. Försök igen.", "OK");
+        }
+        catch (FormatException)
+        {
+            await DisplayAlert("Fel", "Felaktigt datumformat.", "OK");
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Fel", $"Ett oväntat fel inträffade: {ex.Message}", "OK");
+        }
     }
 
     private Color GetStatusColor(int status)
@@ -146,9 +188,6 @@ public partial class AttendancePage : ContentPage
             _ => Colors.LightGray // Ingen data
         };
     }
-
-
-
 
     private void OnPrevYearClicked(object sender, EventArgs e)
     {
