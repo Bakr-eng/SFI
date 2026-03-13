@@ -116,24 +116,24 @@ namespace SFI.ViewModels
         private string GetWeatherCondition(Weather weather)
         {
             if (weather.temp <= 0 && weather.cloud_pct > 50)
-                return "snow";
+                return "Snöar / Risk för snö";
 
             if (weather.cloud_pct > 70 && weather.humidity > 70)
-                return "rain";
+                return "Regnar / Risk för regn";
 
             if (weather.cloud_pct > 50)
-                return "cloud";
+                return "Moln";
 
-            return "sun";
+            return "Sol";
         }
 
         private void SetBackground(string condition)
         {
             BackgroundImage = condition switch
             {
-                "snow" => "snowday.jpg",
-                "rain" => "rainday.jpg",
-                "cloud" => "cloudyday.jpg",
+                "Snöar / Risk för snö" => "snowday.jpg",
+                "Regnar / Risk för regn" => "rainday.jpg",
+                "Moln" => "cloudyday.jpg",
                 _ => "sunnyday.jpg"
             };
         }
