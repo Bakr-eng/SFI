@@ -9,4 +9,14 @@ public partial class WeatherPage : ContentPage
 		InitializeComponent();
 		BindingContext = new WeatherPageViewModels();
 	}
+
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+
+        if (BindingContext is WeatherPageViewModels vm)
+        {
+            await vm.LoadWeatherAuto();   // Hämta vädret direkt
+        }
+    }
 }

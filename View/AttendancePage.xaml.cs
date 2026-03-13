@@ -97,13 +97,11 @@ public partial class AttendancePage : ContentPage
                         TextColor = Colors.Black
                     }
                 };
-
                 var tap = new TapGestureRecognizer();
                 tap.Tapped += OnDayTapped;
                 border.GestureRecognizers.Add(tap);
 
                 layout.Children.Add(border);
-
             }
         }
         catch (ArgumentOutOfRangeException)
@@ -115,9 +113,6 @@ public partial class AttendancePage : ContentPage
             DisplayAlert("Fel", $"Ett oväntat fel inträffade: {ex.Message}", "OK");
         }
     }
-
-
-
     private async void OnDayTapped(object sender, TappedEventArgs e)
     {
         try

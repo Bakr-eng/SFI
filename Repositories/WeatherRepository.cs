@@ -65,5 +65,19 @@ namespace SFI.Repositories
                 return null;
             }
         }
+
+        public static async Task<Weather> GetWeatherByCoordinatesAsync(double lat, double lon) // för att hämta vädret var man befiner sig
+        {
+            var client = new HttpClient();
+            client.BaseAddress = new Uri("https://api.api-ninjas.com/");
+            client.DefaultRequestHeaders.Add("X-Api-Key", ApiKey);
+
+            var response = await client.GetAsync($"v1/weather?lat={lat}&lon={lon}");
+            if (!response.IsSuccessStatusCode)
+                return null;
+
+            var json = await response.Content.ReadAsStringAsync();
+            return JsonSerializer.Deserialize<Weather>(json);
+        }
     }
 }

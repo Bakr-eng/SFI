@@ -43,25 +43,32 @@ namespace SFI.Services
         // av MessageService i hela appen.
         public async Task<List<Meddelande>> GetMessagesForUser(Person user)
         {
-            List<Meddelande> messages;
-
-            if (user.Roll == "Elev")
+            try
             {
-                messages = await _medRepo.GetMessagesForStudent(user.Id, user.KlassId.Value);
-            }
-            else // Lärare
-            {
-                messages = await _medRepo.GetMessagesForTeacher(user.Id, user.KlassId.Value);
-            }
+                List<Meddelande> messages;
 
-            foreach (var m in messages)
-            {
-                var sender = await _personRepo.GetById(m.AvsändareId);
-                m.AvsändareNamn = sender?.Name ?? "Okänd";
-            }
+                if (user.Roll == "Elev")
+                {
+                    messages = await _medRepo.GetMessagesForStudent(user.Id, user.KlassId.Value);
+                }
+                else // Lärare
+                {
+                    messages = await _medRepo.GetMessagesForTeacher(user.Id, user.KlassId.Value);
+                }
 
-            return messages;
+                foreach (var m in messages)
+                {
+                    var sender = await _personRepo.GetById(m.AvsändareId);
+                    m.AvsändareNamn = sender?.Name ?? "Okänd";
+                }
+
+                return messages;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[MessageService] Ovänat fel: {ex.Message}");
+                return new List<Meddelande>();
+            }
         }
-
     }
 }

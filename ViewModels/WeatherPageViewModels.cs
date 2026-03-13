@@ -42,12 +42,52 @@ namespace SFI.ViewModels
         {
             LoadWeatherCommand = new Command(async () => await LoadWeather());
         }
-
+        public async Task LoadWeatherAuto() // för att hämta vädret på plats man befiner sig
+        {
+            try
+            {
+                var location = await Geolocation.GetLocationAsync(
+                    new GeolocationRequest(GeolocationAccuracy.Medium)
+                );
+                if ( location == null )
+                {
+                    WeatherText = "Kunde inte hämta plats.";
+                    return;
+                }
+                var weather = await WeatherRepository.GetWeatherByCoordinatesAsync(
+                      location.Latitude,
+                      location.Longitude
+                 );
+                if (weather == null)
+                {
+                    WeatherText = "Kunde inte hämta väder för din plats.";
+                    return;
+                }
+                WeatherText =
+                    $"Din plats\n" +
+                    $"{GetWeatherCondition(weather)}\n" +
+                    $"Temp: {weather.temp}°C\n" +
+                    $"Vind: {weather.wind_speed} m/s\n" +
+                    $"Fuktighet: {weather.humidity}%";
+            }
+            catch (FeatureNotSupportedException)
+            {
+                WeatherText = "GPS stöds inte på denna enhet.";
+            }
+            catch (PermissionException)
+            {
+                WeatherText = "Appen har inte tillåtelse att använda plats.";
+            }
+            catch (Exception ex)
+            {
+                WeatherText = $"Fel: {ex.Message}";
+            }
+        }
         private async Task LoadWeather()
         {
             if (string.IsNullOrWhiteSpace(City))
             {
-                WeatherText = "skriv en stad först.";
+                await LoadWeatherAuto();
                 return;
             }
             var weather = await WeatherRepository.GetWeatherAsync(City);

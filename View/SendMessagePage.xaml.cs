@@ -128,13 +128,11 @@ public partial class SendMessagePage : ContentPage
         // Med facade skriver vi bara 
         var message = await _messageService.GetMessagesForUser(_perosn);
         MessagesList.ItemsSource = message;
-
     }
-
-
-
     private async void OnMessageTapped(object sender, TappedEventArgs e)
     {
+        try
+        { 
         var frame = (Frame)sender;
         var message = (Meddelande)frame.BindingContext;
 
@@ -144,20 +142,25 @@ public partial class SendMessagePage : ContentPage
             null,
             "Ta bort"
             );
+            if (action == "Ta bort")
+            {
+                bool confirm = await DisplayAlert("Radera", "Vill du radera detta meddelande?", "Ja", "Nej");
+                if (!confirm)
+                    return;
 
+                await _meddelandeRepo.Delete(message.Id);
 
-
-        if (action == "Ta bort")
+                var messages = await _messageService.GetMessagesForUser(_perosn);
+                MessagesList.ItemsSource = messages;
+            }
+        }
+        catch (NullReferenceException)
         {
-            bool confirm = await DisplayAlert("Radera", "Vill du radera detta meddelande?", "Ja", "Nej");
-            if (!confirm)
-                return;
-
-            await _meddelandeRepo.Delete(message.Id);
-
-            var messages = await _messageService.GetMessagesForUser(_perosn);
-            MessagesList.ItemsSource = messages;
-
+            await DisplayAlert("Fel", "Meddelandet saknas eller är ogiltigt.", "OK");
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Fel", $"Ett oväntat fel inträffade: {ex.Message}", "OK");
         }
     }
 }
