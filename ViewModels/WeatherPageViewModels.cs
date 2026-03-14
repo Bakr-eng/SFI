@@ -131,10 +131,10 @@ namespace SFI.ViewModels
         {
             BackgroundImage = condition switch
             {
-                "Snöar / Risk för snö" => "snowday.jpg",
-                "Regnar / Risk för regn" => "rainday.jpg",
+                "Snöar / Risk för snö" => "snow.jpg",
+                "Regnar / Risk för regn" => "rain.jpg",
                 "Moln" => "cloudyday.jpg",
-                _ => "sunnyday.jpg"
+                _ => "sun.jpg"
             };
         }
 
