@@ -16,5 +16,7 @@ namespace SFI.Repositories
         Task<Attendance> GetByDate(ObjectId studentId, DateTime date);
         Task Add(Attendance attendance);
         Task Update(Attendance attendance);
+        Task Delete(ObjectId id);
+
     }
 }

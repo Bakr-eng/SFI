@@ -11,6 +11,7 @@ public partial class ShowStudentInfoPage : ContentPage
     private readonly IKlassRepository _klassRepo = new KlassRepository();
     private readonly IPersonRepository _personRepo = PersonRepository.Instance;
     private readonly INivåerRepository _nivåRepo = new NivåerRepository();
+    private readonly IAttendanceRepository _attendanceRepo = new AttendanceRepository();
     private  Person _elev;
     public  ShowStudentInfoPage(Person elev)
     {
@@ -49,6 +50,8 @@ public partial class ShowStudentInfoPage : ContentPage
         if(await DisplayAlert("Radera", "Är du säker på att du vill radera denna elev?", "Ja", "Nej"))
         {
             await _personRepo.Delete(_elev.Id);
+            await _nivåRepo.Delete(_elev.Id);
+            await _attendanceRepo.Delete(_elev.Id);
             await DisplayAlert("Klart", "Eleven har raderats!", "OK");
             await Navigation.PopAsync();
         }

@@ -57,5 +57,10 @@ namespace SFI.Repositories
             await _collection.ReplaceOneAsync(filter, attendance);
         }
 
+        public async Task Delete(ObjectId id)
+        {
+            var filter = Builders<Attendance>.Filter.Eq(a => a.Id, id);
+            await _collection.DeleteOneAsync(filter);
+        }
     }
 }
