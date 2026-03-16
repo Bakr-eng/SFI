@@ -27,11 +27,7 @@ namespace SFI.Repositories
             await _collection.ReplaceOneAsync(n => n.Id == nivåer.Id, nivåer);
         }
 
-        public async Task Delete(ObjectId id)
-        {
-            await _collection.DeleteOneAsync(n => n.Id == id);
-        }
-
+   
         public Task<Nivåer> GetByElevId(ObjectId elevId) =>
             _collection.Find(n => n.ElevId == elevId).FirstOrDefaultAsync();
 

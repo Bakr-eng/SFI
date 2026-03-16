@@ -15,6 +15,5 @@ namespace SFI.Repositories
 
         Task Add(Nivåer nivåer);
         Task Update(Nivåer nivåer);
-        Task Delete(ObjectId id);
     }
 }

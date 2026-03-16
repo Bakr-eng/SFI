@@ -51,9 +51,9 @@ public partial class ShowStudentInfoPage : ContentPage
     {
         if(await DisplayAlert("Radera", "Är du säker på att du vill radera denna elev?", "Ja", "Nej"))
         {
-            await _personRepo.Delete(_elev.Id);
-            await _nivåRepo.Delete(_elev.Id);
-            await _attendanceRepo.Delete(_elev.Id);
+            _elev.KlassId = null;  // spara eleven i MongoDb när lärare ta bortar en elev
+            await _personRepo.Update(_elev);
+           // await _personRepo.Delete(_elev.Id);   
             await DisplayAlert("Klart", "Eleven har raderats!", "OK");
             await Navigation.PopAsync();
         }
