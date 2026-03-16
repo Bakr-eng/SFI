@@ -20,6 +20,9 @@ namespace SFI.Models
         [BsonElement("email")]
         public string Email { get; set; }
 
+        [BsonElement("phone")]
+        public string Phone {  get; set; }
+
         [BsonElement("lösenord")]
         public string Lösenord { get; set; }
 

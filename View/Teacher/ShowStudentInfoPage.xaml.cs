@@ -23,9 +23,10 @@ public partial class ShowStudentInfoPage : ContentPage
     }
     private async Task LoadStudentInfo()
     {
-        NamnLabel.Text = $"Namn: {_elev.Name}";
-        EmailLabel.Text = $"E-post: {_elev.Email}";
-        LösenordLabel.Text = $"Lösenord: {_elev.Lösenord}";
+        NamnLabel.Text = $"Namn:   {_elev.Name}";
+        EmailLabel.Text = $"E-post:   {_elev.Email}";
+        PhoneLabel.Text = $"Telefonnummer:   {_elev.Phone}";
+        LösenordLabel.Text = $"Lösenord:   {_elev.Lösenord}";
 
         if (_elev.KlassId.HasValue)
         {
@@ -114,4 +115,6 @@ public partial class ShowStudentInfoPage : ContentPage
     {
         await Navigation.PushAsync(new AttendancePage(_elev, _larare));
     }
+
+
 }

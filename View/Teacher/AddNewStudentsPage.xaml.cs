@@ -27,6 +27,7 @@ public partial class AddNewStudentsPage : ContentPage
                 Id = ObjectId.GenerateNewId(),
                 Name = StudentName.Text,
                 Email = StudentEmail.Text,
+                Phone = StudentPhone.Text,
                 Lösenord = Password.Text,
                 Roll = "Elev",
                 KlassId = _Lärare.KlassId,
@@ -38,6 +39,7 @@ public partial class AddNewStudentsPage : ContentPage
             await DisplayAlert("Klart", "Ny elev har lagts till!", "OK");
             StudentName.Text = string.Empty;
             StudentEmail.Text = string.Empty;
+            StudentPhone.Text = string.Empty;
             Password.Text = string.Empty;
 
            

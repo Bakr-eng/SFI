@@ -6,11 +6,7 @@
              xmlns:components="clr-namespace:SFI.View.Components">
     <VerticalStackLayout>
 
-        <Label
-            Text="eleven Info"
-            FontSize="30"
-            HorizontalOptions="Center" 
-        />
+      
 
         <Grid ColumnDefinitions="*, Auto">
             <components:GoBackButton  
@@ -34,6 +30,8 @@
 
         <Label  x:Name="EmailLabel" Text="Email:" FontAttributes="Bold" Margin="0,20,0,0" />
 
+        <Label  x:Name="PhoneLabel" Text="Telefonnummer:" FontAttributes="Bold" Margin="0,20,0,0" />
+        
         <Label x:Name="KlassIdLabel" Text="KlassId:" FontAttributes="Bold" Margin="0,20,0,0" />
 
         <Grid

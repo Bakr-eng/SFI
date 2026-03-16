@@ -16,7 +16,7 @@
 
         <Entry
             x:Name="StudentName"
-            Placeholder="namn"
+            Placeholder="Namn"
             BackgroundColor="BlanchedAlmond"
             TextColor="Black"
             Margin="0,5"/>
@@ -29,8 +29,15 @@
             Margin="0,5" />
 
         <Entry
+            x:Name="StudentPhone"
+            Placeholder="Mobilnummer"
+            BackgroundColor="BlanchedAlmond"
+            TextColor="Black"
+            Margin="0,5" />
+
+        <Entry
             x:Name="Password"
-            Placeholder="lösenord"
+            Placeholder="Lösenord"
             BackgroundColor="BlanchedAlmond"
             TextColor="Black"
             Margin="0,5" 
