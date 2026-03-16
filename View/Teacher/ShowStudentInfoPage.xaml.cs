@@ -13,12 +13,13 @@ public partial class ShowStudentInfoPage : ContentPage
     private readonly INivåerRepository _nivåRepo = new NivåerRepository();
     private readonly IAttendanceRepository _attendanceRepo = new AttendanceRepository();
     private  Person _elev;
-    public  ShowStudentInfoPage(Person elev)
+    private Person _larare;
+    public  ShowStudentInfoPage(Person elev, Person larare)
     {
         InitializeComponent();
         _elev = elev;
+        _larare = larare;
         LoadStudentInfo();
-      
     }
     private async Task LoadStudentInfo()
     {
@@ -111,6 +112,6 @@ public partial class ShowStudentInfoPage : ContentPage
 
     private async void OnAttendanceClicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new AttendancePage(_elev));
+        await Navigation.PushAsync(new AttendancePage(_elev, _larare));
     }
 }

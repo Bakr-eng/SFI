@@ -7,16 +7,15 @@ namespace SFI.View;
 
 public partial class AttendancePage : ContentPage
 {
-	
     private readonly IAttendanceRepository _attendanceRepo = new AttendanceRepository();
 	private readonly Person _elev;
-
+    private readonly Person _person;
     private int _currentYear = DateTime.Now.Year;
-
-    public AttendancePage(Person elev)
+    public AttendancePage(Person elev, Person perosn)
 	{
 		InitializeComponent();
 		_elev = elev;
+        _person = perosn;
 
         YearLabel.Text = _currentYear.ToString();
         LoadYear(_currentYear);
@@ -115,63 +114,73 @@ public partial class AttendancePage : ContentPage
     }
     private async void OnDayTapped(object sender, TappedEventArgs e)
     {
-        try
-        {
-            var border = (Border)sender;
-            var date = ((DateTime)border.BindingContext).Date;
-
-            string choice = await DisplayActionSheet(
-                $"{date:yyyy-MM-dd}",
-                "Avbryt",
-                null,
-                "Närvarande",
-                "Frånvarande",
-                "Sjuk"
-            );
-
-            int status = choice switch
+      
+        
+            try
             {
-                "Närvarande" => 2,
-                "Frånvarande" => 0,
-                "Sjuk" => 1,
-                _ => -1
-            };
+                var border = (Border)sender;
+                var date = ((DateTime)border.BindingContext).Date;
 
-            if (status == -1)
-                return;
+                string choice = await DisplayActionSheet(
+                    $"{date:yyyy-MM-dd}",
+                    "Avbryt",
+                    null,
+                    "Närvarande",
+                    "Frånvarande",
+                    "Sjuk"
+                );
 
-            var existing = await _attendanceRepo.GetByDate(_elev.Id, date);
-
-            if (existing == null)
-            {
-                await _attendanceRepo.Add(new Attendance
+                int status = choice switch
                 {
-                    StudentId = _elev.Id,
-                    Datum = date,
-                    Status = status
-                });
-            }
-            else
+                    "Närvarande" => 2,
+                    "Frånvarande" => 0,
+                    "Sjuk" => 1,
+                    _ => -1
+                };
+
+            if (_person.Roll != "Lärare")
             {
-                existing.Status = status;
-                await _attendanceRepo.Update(existing);
+                await DisplayAlert("Åtkomst nekad", "Endast lärare kan ändra närvaro.", "OK");
+                return;
+            }
+                if (status == -1)
+                    return;
+
+                var existing = await _attendanceRepo.GetByDate(_elev.Id, date);
+
+                if (existing == null)
+                {
+                    await _attendanceRepo.Add(new Attendance
+                    {
+                        StudentId = _elev.Id,
+                        Datum = date,
+                        Status = status
+                    });
+                }
+                else
+                {
+                    existing.Status = status;
+                    await _attendanceRepo.Update(existing);
+                }
+
+                border.BackgroundColor = GetStatusColor(status);
+            
             }
 
-            border.BackgroundColor = GetStatusColor(status);
+            catch (NullReferenceException)
+            {
+                await DisplayAlert("Fel", "Kunde inte läsa datumet. Försök igen.", "OK");
+            }
+            catch (FormatException)
+            {
+                await DisplayAlert("Fel", "Felaktigt datumformat.", "OK");
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Fel", $"Ett oväntat fel inträffade: {ex.Message}", "OK");
+            }
         }
-        catch (NullReferenceException)
-        {
-            await DisplayAlert("Fel", "Kunde inte läsa datumet. Försök igen.", "OK");
-        }
-        catch (FormatException)
-        {
-            await DisplayAlert("Fel", "Felaktigt datumformat.", "OK");
-        }
-        catch (Exception ex)
-        {
-            await DisplayAlert("Fel", $"Ett oväntat fel inträffade: {ex.Message}", "OK");
-        }
-    }
+    
 
     private Color GetStatusColor(int status)
     {

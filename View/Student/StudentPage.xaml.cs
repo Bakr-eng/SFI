@@ -25,6 +25,6 @@ public partial class StudentPage : ContentPage
 
     private async void OnAttendanceClicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new AttendancePage(_elev));
+        await Navigation.PushAsync(new AttendancePage(_elev, _elev));
     }
 }
