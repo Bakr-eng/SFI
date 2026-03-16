@@ -31,8 +31,19 @@
             VerticalOptions="Center"
             Margin="0,10,0,0"
             TextColor="Black"
-            Clicked="OnWeatherClicked"
-        />
+            Clicked="OnWeatherClicked"/>
+
+
+        <Button
+            Text="Närvarande"
+            WidthRequest="500"
+            HeightRequest="40"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            Margin="0,10,0,0"
+            TextColor="Black"
+            BackgroundColor="DarkGreen"
+            Clicked="OnAttendanceClicked"/>
 
 
 

@@ -22,4 +22,9 @@ public partial class StudentPage : ContentPage
     {
         await Navigation.PushAsync(new WeatherPage());
     }
+
+    private async void OnAttendanceClicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new AttendancePage(_elev));
+    }
 }
