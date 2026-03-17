@@ -46,6 +46,7 @@
         <Button
             Text="Spara"
             Margin="70,0,70,0"
+            BackgroundColor="SeaGreen"
             Clicked="OnSaveClicked"
             />
 

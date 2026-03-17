@@ -4,7 +4,7 @@
              x:Class="SFI.View.Teacher.ShowStudentInfoPage"
              Title="ShowStudentInfoPage"
              xmlns:components="clr-namespace:SFI.View.Components">
-    <VerticalStackLayout>
+    <VerticalStackLayout BackgroundColor="Black">
 
       
 
