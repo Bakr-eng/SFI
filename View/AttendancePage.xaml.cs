@@ -70,17 +70,15 @@ public partial class AttendancePage : ContentPage
             {
                 DateTime date = new DateTime(year, month, day);
 
-                //  int status = attendanceDict.ContainsKey(date) ? attendanceDict[date] : -1;
                 int status;
 
                 if (attendanceDict.ContainsKey(date))
                 {
-                    // Läraren har ändrat ? använd sparad status
                     status = attendanceDict[date];
                 }
                 else if (date == DateTime.Today)
                 {
-                    // Dagar upp till idag blir automatiskt närvarande
+                    // Dagar för idag blir automatiskt närvarande
                     status = 2;
                 }
                 else

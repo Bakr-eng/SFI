@@ -10,7 +10,14 @@
         <Grid ColumnDefinitions="*, Auto">
             <components:LogoutButton Grid.Column="1"/>
         </Grid>
-        
+
+        <Label 
+            x:Name="welcomeLabel"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center"
+            FontSize="Large"
+            TextColor="SaddleBrown"/>
+
         <Button
              Text="Meddelande"
              WidthRequest="500"

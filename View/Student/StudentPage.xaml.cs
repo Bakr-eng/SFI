@@ -12,6 +12,8 @@ public partial class StudentPage : ContentPage
 		InitializeComponent();
 		_elev = elev;
 
+        welcomeLabel.Text = $"Välkommen {_elev.Name}";
+
     }
     private async void OmMessageClicked(object sender, EventArgs e)
     {

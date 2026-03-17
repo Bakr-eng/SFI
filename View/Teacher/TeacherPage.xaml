@@ -7,9 +7,6 @@
              xmlns:components="clr-namespace:SFI.View.Components">
 
     <VerticalStackLayout>
-        
-        
-        
         <Label 
             x:Name="welcomeLabel"
             VerticalOptions="Center" 
@@ -17,13 +14,9 @@
             FontSize="Large"
             TextColor="SaddleBrown"
         />
-
-
-
         <Grid ColumnDefinitions="*, Auto">
             <components:LogoutButton Grid.Column="1"/>
         </Grid>
-
 
         <Button
             Text="Hantera elever"
@@ -35,9 +28,6 @@
             Margin="0,15,0,0"
             TextColor="Black"
             Clicked="OnManageStudentsClicked" />
-
-      
-
         <Button
             Text="Skicka Meddelande"
             WidthRequest="500"
@@ -60,8 +50,6 @@
             TextColor="Black"
             Clicked="OnWeatherClicked"
         />
-
-
 
     </VerticalStackLayout>
 </ContentPage>
