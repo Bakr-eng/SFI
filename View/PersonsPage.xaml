@@ -5,8 +5,16 @@
              Title="PersonsPage">
     <VerticalStackLayout>
         <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+            Text=""/>
+
+        <Label x:Name="NamnLabel" Text="Namn:" FontAttributes="Bold" />
+
+        <Label  x:Name="EmailLabel" Text="Email:" FontAttributes="Bold" Margin="0,20,0,0" />
+
+        <Label  x:Name="PhoneLabel" Text="Telefonnummer:" FontAttributes="Bold" Margin="0,20,0,0" />
+
+        <Label x:Name="KlassIdLabel" Text="KlassId:" FontAttributes="Bold" Margin="0,20,0,0" />
+
+        <Label  x:Name="LösenordLabel"  Text="Lösenord:" FontAttributes="Bold" Margin="0,20,0,0" Grid.Column="0" />
     </VerticalStackLayout>
 </ContentPage>

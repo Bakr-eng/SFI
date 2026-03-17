@@ -20,8 +20,6 @@ public partial class TeacherPage : ContentPage
         await Navigation.PushAsync(new ManageStudentsPage(_Larare));
     }
 
-  
-
     private async void OmMessageClicked(object sender, EventArgs e)
     {
         await Navigation.PushAsync(new SendMessagePage(_Larare));
