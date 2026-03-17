@@ -28,6 +28,7 @@
             Margin="0,15,0,0"
             TextColor="Black"
             Clicked="OnManageStudentsClicked" />
+        
         <Button
             Text="Skicka Meddelande"
             WidthRequest="500"
@@ -38,6 +39,17 @@
             Margin="0,15,0,0"
             TextColor="Black"
             Clicked="OmMessageClicked" />
+
+        <Button
+            Text="Min Profil"
+            WidthRequest="500"
+            HeightRequest="40"
+            BackgroundColor="DarkGray"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            Margin="0,20,0,0"
+            TextColor="Black"
+            Clicked="OnMyprofileClicked" />
 
         <Button 
             Text="Vädret"

@@ -19,14 +19,18 @@ public partial class StudentPage : ContentPage
     {
         await Navigation.PushAsync(new SendMessagePage(_elev));
     }
-
+    private async void OnMyprofileClicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new PersonsPage(_elev));
+    }
     private async void OnWeatherClicked(object sender, EventArgs e)
     {
         await Navigation.PushAsync(new WeatherPage());
     }
-
     private async void OnAttendanceClicked(object sender, EventArgs e)
     {
         await Navigation.PushAsync(new AttendancePage(_elev, _elev));
     }
+
+   
 }

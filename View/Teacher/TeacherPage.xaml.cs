@@ -26,9 +26,14 @@ public partial class TeacherPage : ContentPage
     {
         await Navigation.PushAsync(new SendMessagePage(_Larare));
     }
-
+    private async void OnMyprofileClicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new PersonsPage(_Larare));
+    }
     private async void OnWeatherClicked(object sender, EventArgs e)
     {
         await Navigation.PushAsync(new WeatherPage());
     }
+
+   
 }

@@ -6,17 +6,16 @@
              xmlns:components="clr-namespace:SFI.View.Components">
     <VerticalStackLayout>
 
-
-        <Grid ColumnDefinitions="*, Auto">
-            <components:LogoutButton Grid.Column="1"/>
-        </Grid>
-
         <Label 
             x:Name="welcomeLabel"
             VerticalOptions="Center" 
             HorizontalOptions="Center"
             FontSize="Large"
             TextColor="SaddleBrown"/>
+        
+        <Grid ColumnDefinitions="*, Auto">
+            <components:LogoutButton Grid.Column="1"/>
+        </Grid>
 
         <Button
              Text="Meddelande"
@@ -29,6 +28,17 @@
              TextColor="Black"
              Clicked="OmMessageClicked" />
 
+        <Button
+            Text="Min Profil"
+            WidthRequest="500"
+            HeightRequest="40"
+            BackgroundColor="DarkGray"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            Margin="0,20,0,0"
+            TextColor="Black"
+            Clicked="OnMyprofileClicked" />
+
         <Button 
             Text="Vädret"
             WidthRequest="500"
@@ -40,7 +50,6 @@
             TextColor="Black"
             Clicked="OnWeatherClicked"/>
 
-
         <Button
             Text="Närvarande"
             WidthRequest="500"
@@ -51,8 +60,6 @@
             TextColor="Black"
             BackgroundColor="DarkGreen"
             Clicked="OnAttendanceClicked"/>
-
-
 
     </VerticalStackLayout>
 </ContentPage>
