@@ -78,7 +78,7 @@ public partial class AttendancePage : ContentPage
                     // Läraren har ändrat ? använd sparad status
                     status = attendanceDict[date];
                 }
-                else if (date <= DateTime.Today)
+                else if (date == DateTime.Today)
                 {
                     // Dagar upp till idag blir automatiskt närvarande
                     status = 2;
