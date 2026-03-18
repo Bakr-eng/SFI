@@ -6,39 +6,32 @@
     <ScrollView>
             <VerticalStackLayout BackgroundColor="Gray" Padding="50" Spacing="15">
 
-                <Label
+            <Label
                 Text="VälKommen till SFI" 
                 TextColor="DarkBlue"
                 FontSize="20"
                 HorizontalTextAlignment="Center"
-                VerticalTextAlignment="Center"
-                />
+                VerticalTextAlignment="Center"/>
 
-
-                <Entry
+            <Entry
                 x:Name="email"
                 Placeholder="användare namn"
                 BackgroundColor="BlanchedAlmond"
-                TextColor="Black"
-                />
+                TextColor="Black" />
 
-                <Entry
+            <Entry
                 x:Name="Password"
                 IsPassword="True"
                 Placeholder="lösenord"
                 BackgroundColor="BlanchedAlmond"
-                TextColor="Black"
-                />
+                TextColor="Black"/>
 
-
-
-                <Button
+            <Button
                 Text="loga in"
                 CornerRadius="25"
                 BackgroundColor="LightGreen"
                 Margin="70,10"
-                Clicked="OnLogInClicked"
-                />
+                Clicked="OnLogInClicked"/>
 
             <Image
                 Source="svenska.jpg"/>

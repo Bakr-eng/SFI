@@ -34,7 +34,6 @@ public partial class AddNewStudentsPage : ContentPage
                 LärareId = _Lärare.Id
             };
             await _personRepo.Add(nyElev);
-            
 
             await DisplayAlert("Klart", "Ny elev har lagts till!", "OK");
             StudentName.Text = string.Empty;
@@ -42,7 +41,6 @@ public partial class AddNewStudentsPage : ContentPage
             StudentPhone.Text = string.Empty;
             Password.Text = string.Empty;
 
-           
             // Skapa nivåer-post för den nya eleven
             var nivåer = new Nivåer
             {

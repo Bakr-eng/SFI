@@ -17,9 +17,6 @@
             Margin="10"
             Clicked="OnAddStudentClicked"/>
 
-
-
-
         <CollectionView x:Name="StudentsList"
                 SelectionMode="Single"
                 SelectionChanged="OnStudentSelected">
@@ -31,10 +28,6 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-
-
-
-
 
     </VerticalStackLayout>
 </ContentPage>

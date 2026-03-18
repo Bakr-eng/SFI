@@ -59,11 +59,7 @@ namespace SFI.ViewModels
                       location.Latitude,
                       location.Longitude
                  );
-                if (weather == null)
-                {
-                    WeatherText = "Kunde inte hämta väder.";
-                    return;
-                }
+               
                 var condition = GetWeatherCondition(weather);
                 SetBackground(condition);
 

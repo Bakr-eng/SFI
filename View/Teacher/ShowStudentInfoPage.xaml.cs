@@ -51,7 +51,7 @@ public partial class ShowStudentInfoPage : ContentPage
     {
         if(await DisplayAlert("Radera", "Är du säker på att du vill radera denna elev?", "Ja", "Nej"))
         {
-            _elev.KlassId = null;  // spara eleven i MongoDb när lärare ta bortar en elev
+            _elev.KlassId = null;  // Eleven ta bortas bara i lärarens klass, inte i MongoDb
             await _personRepo.Update(_elev);
            // await _personRepo.Delete(_elev.Id);   
             await DisplayAlert("Klart", "Eleven har raderats!", "OK");
@@ -62,7 +62,6 @@ public partial class ShowStudentInfoPage : ContentPage
     {
         try
         {
-
             var nivå = await _nivåRepo.GetByElevId(_elev.Id); 
 
             if (nivå == null)
