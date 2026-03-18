@@ -106,7 +106,7 @@ public partial class ShowStudentInfoPage : ContentPage
         NewPasswordEntry.Text = "";
         RepeatPasswordEntry.Text = "";
 
-        await LoadStudentInfo(); // för att visa direkt ändringar
+        await LoadStudentInfo(); //  Visa direkt ändringar
 
     }
 
