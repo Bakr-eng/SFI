@@ -2,6 +2,7 @@ using Microsoft.Maui.Controls.Shapes;
 using MongoDB.Bson;
 using SFI.Models;
 using SFI.Repositories;
+using System.Threading.Tasks;
 
 namespace SFI.View;
 
@@ -58,7 +59,7 @@ public partial class AttendancePage : ContentPage
             await DisplayAlert("Fel", $"Ett oväntat fel inträffade: {ex.Message}", "OK");
         }
     }
-    private void FillMonth(VerticalStackLayout layout, int month, int year, Dictionary<DateTime, int> attendanceDict)
+    private async Task FillMonth(VerticalStackLayout layout, int month, int year, Dictionary<DateTime, int> attendanceDict)
     {
         try
         {
@@ -80,6 +81,16 @@ public partial class AttendancePage : ContentPage
                 {
                     // Dagar för idag blir automatiskt närvarande
                     status = 2;
+                    if (!attendanceDict.ContainsKey(date))
+                    {
+                        // Spara närvaro för idag i databasen
+                        await _attendanceRepo.Add(new Attendance
+                        {
+                            StudentId = _elev.Id,
+                            Datum = date,
+                            Status = status
+                        });
+                    }
                 }
                 else
                 {
